@@ -28,9 +28,9 @@
     <!-- application datasource -->
     <bean id="dataSourceC3P0_MYSQL" class="com.mchange.v2.c3p0.ComboPooledDataSource">
     	<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://47.94.218.215:3306/neapp"/>
-        <property name="user" value="dlsc"/>
-        <property name="password" value="dlsc3143"/>
+        <property name="jdbcUrl" value="jdbc:mysql://47.104.95.108:3306/weixin"/>
+        <property name="user" value="root"/>
+        <property name="password" value="root.2012"/>
     </bean>
     <bean id="dataSourceC3P0_MYSQLSHIRO" class="com.mchange.v2.c3p0.ComboPooledDataSource">
     	<property name="driverClass" value="com.mysql.jdbc.Driver"/>
@@ -73,7 +73,7 @@
     </bean>
     
     <!-- scan for mappers and let them be autowired 指定mapper接口的包名-->
-    <mybatis-spring:scan base-package="com.kedong" />
+    <mybatis-spring:scan base-package="top.liyang024" />
     <mybatis-spring:scan base-package="com.atguigu" />
 
 
