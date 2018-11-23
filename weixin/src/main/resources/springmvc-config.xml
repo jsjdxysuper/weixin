@@ -27,13 +27,51 @@
      <!-- 配置处理器适配器-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 
+	<!-- 视图解析器1:html视图解析器 必须先配置freemarkerConfig,注意html是没有prefix前缀属性的 -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="freemarkerSettings">
+			<bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="properties">
+					<props>
+						<prop key="default_encoding">utf-8</prop>
+						<prop key="output_encoding">utf-8</prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+		<property name="templateLoaderPath">
+			<value>/WEB-INF/pages/</value>
+		</property>
+	</bean>
+	<bean id="htmlviewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="suffix">
+			<value>.html</value>
+		</property>
+		<property name="order">
+			<value>0</value>
+		</property>
+	</bean>
+	<!-- 视图解析器2:jsp视图解析器 -->
+<!-- 	<bean id="jspviewResolver" -->
+<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" -->
+<!-- 		p:prefix="/WEB-INF/views/" p:suffix=".jsp" p:order="1"> -->
+<!-- 		<property name="contentType" value="text/html;charset=UTF-8" /> -->
+<!-- 	</bean> -->
+
 	<!-- 视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix">
-			<value>/WEB-INF/</value>
+			<value>/WEB-INF/pages</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
+		</property>
+		<property name="order">
+			<value>1</value>
 		</property>
 		</bean>
 </beans>
