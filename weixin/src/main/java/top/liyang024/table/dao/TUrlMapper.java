@@ -2,9 +2,11 @@ package top.liyang024.table.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
 import top.liyang024.table.domain.TUrl;
 import top.liyang024.table.domain.TUrlExample;
-
+@Component
 public interface TUrlMapper {
     long countByExample(TUrlExample example);
 

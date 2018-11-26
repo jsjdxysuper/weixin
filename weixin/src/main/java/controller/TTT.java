@@ -27,7 +27,7 @@ public class TTT {
 		return mv;
 	}
 	
-	@RequestMapping(value="/home")
+	@RequestMapping(value="/home1")
 	public ModelAndView homeInit() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");

@@ -20,7 +20,7 @@ public class IndexServ {
 	 * 形成两级菜单
 	 * @return
 	 */
-	public List<TUrl> searchMenuList() {
+	public List<TUrl> searchMenuTree() {
 		TUrlExample example = new TUrlExample();
 		example.createCriteria();
 		example.setOrderByClause(" c_index");
