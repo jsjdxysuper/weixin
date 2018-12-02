@@ -8,10 +8,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +25,18 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kedong.tool.Utilities;
+
+import top.liyang024.table.domain.TSysCode;
+import top.liyang024.table.domain.TUploadres;
+import top.liyang024.wechat.resouce.service.UploadFileService;
+
 @Controller
 public class UploadFileController {
+	
+	@Autowired
+	public UploadFileService uploadFileService;
+	
 	@RequestMapping(value="/uploadFile/upload")
 	public String upload(HttpServletRequest request){
 		try {
@@ -89,16 +102,17 @@ public class UploadFileController {
 	
 	
 	@PostMapping(value="/uploadFile/multiFile")
-	public String multiFile(@RequestParam("file") MultipartFile[] uploadFiles,String name,HttpSession session) {
+	public String multiFile(@RequestParam("file") MultipartFile[] uploadFiles,@RequestParam("mark") String[] name,HttpSession session) {
 		String ret = "Upload";
+		String time = Utilities.getToday()+"-"+Utilities.getSysTime().replaceAll(":", "-");
 		try {
 			for(int i=0;i<uploadFiles.length;i++) {
 				MultipartFile item = uploadFiles[i];
 				
 				if(item.getSize()>0) {
 					String fileName = item.getOriginalFilename();
-					
-					String leftPath = session.getServletContext().getRealPath("/resources");
+					fileName = time+(i+1)+"_"+fileName;
+					String leftPath = session.getServletContext().getRealPath("/")+"../resources";
 					File file = new File(leftPath,fileName);
 					
 					item.transferTo(file);
@@ -107,6 +121,7 @@ public class UploadFileController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 		return ret;
 	}
 	
@@ -115,7 +130,13 @@ public class UploadFileController {
 	public ModelAndView init(){
 		ModelAndView mv = new ModelAndView("Upload");
 
-		
+		List<TSysCode>sysCodeList = uploadFileService.getFileTypeList();
 		return mv;
+	}
+	
+	@Test
+	public void test1() {
+		String time = Utilities.getToday()+"-"+Utilities.getSysTime().replaceAll(":", "-");
+		System.out.println(time);
 	}
 }

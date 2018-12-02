@@ -523,6 +523,66 @@ public class TSysCodeExample {
             addCriterion("c_mark not between", value1, value2, "cMark");
             return (Criteria) this;
         }
+
+        public Criteria andCIndexIsNull() {
+            addCriterion("c_index is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexIsNotNull() {
+            addCriterion("c_index is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexEqualTo(Byte value) {
+            addCriterion("c_index =", value, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexNotEqualTo(Byte value) {
+            addCriterion("c_index <>", value, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexGreaterThan(Byte value) {
+            addCriterion("c_index >", value, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexGreaterThanOrEqualTo(Byte value) {
+            addCriterion("c_index >=", value, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexLessThan(Byte value) {
+            addCriterion("c_index <", value, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexLessThanOrEqualTo(Byte value) {
+            addCriterion("c_index <=", value, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexIn(List<Byte> values) {
+            addCriterion("c_index in", values, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexNotIn(List<Byte> values) {
+            addCriterion("c_index not in", values, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexBetween(Byte value1, Byte value2) {
+            addCriterion("c_index between", value1, value2, "cIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andCIndexNotBetween(Byte value1, Byte value2) {
+            addCriterion("c_index not between", value1, value2, "cIndex");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

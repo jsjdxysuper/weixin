@@ -25,16 +25,26 @@
 <script src="<%=basePath %>js/jquery-1.9.1.min.js"></script>
 <script src="<%=basePath %>assets/js/bootstrap.min.js"></script>
 <script src="<%=basePath %>assets/js/typeahead-bs2.min.js"></script>           	
-<script src="<%=basePath %>assets/js/jquery.dataTables.min.js"></script>
-<script src="<%=basePath %>assets/js/jquery.dataTables.bootstrap.js"></script>
-<script src="<%=basePath %>assets/layer/layer.js" type="text/javascript" ></script>          
-<script src="<%=basePath %>assets/laydate/laydate.js" type="text/javascript"></script>
+        <script src="<%=basePath %>assets/layer/layer.js" type="text/javascript" ></script>          
+        <script src="<%=basePath %>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="<%=basePath %>assets/js/jquery.ui.touch-punch.min.js"></script>
+        <script src="<%=basePath %>assets/js/ace-elements.min.js"></script>
+		<script src="<%=basePath %>assets/js/ace.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
 	});
 	function addUploadFile(){
-		$("#uploadMultiFileForm").prepend("<input type='file' name='file'>");
+		debugger;
+		$("#uploadFileTable tbody").append("<tr>"+
+			"<td><input id='upFile1' class='file-label' type='file' name='file'></td>"+
+			"<td><input type='text' size='120'  name='mark' id='mark'/></td>"+
+			"<td><input type='button' class='btn  btn-default' value='删除' onclick='deleteOneFileRec(this)'/></td>"+
+			"</tr>");
+	}
+	
+	function deleteOneFileRec(e){
+		$($(e).parent().parent()).remove();
 	}
 </script>
 <title>文件上传</title>
@@ -43,23 +53,38 @@
 
 <body>
 <div >
-<h1>spring文件上传</h1>
-<div><button onclick="addUploadFile()">添加文件</button></div>
-<form id="uploadFileForm" name="uploadFileForm" 
-	action="<%=basePath %>uploadFile/oneFile" method="post"  enctype="multipart/form-data">
-
-<input type="file" name="file">
-<input type="submit" value="upload"/>
-</form>
-</div>
+<h1>文件批量上传</h1>
+<div><input class="btn  btn-default"  onclick="addUploadFile()" value="添加上传文件"/></div>
+<!-- <form id="uploadFileForm" name="uploadFileForm"  -->
+<%-- 	action="<%=basePath %>uploadFile/oneFile" method="post"  enctype="multipart/form-data"> --%>
+<!-- <input type="file" name="file"> -->
+<!-- <input type="submit" value="upload"/> -->
+<!-- </form> -->
+<!-- </div> -->
 
 <div>
-<form id="uploadMultiFileForm" name="uploadMultiFileForm" 
-	action="<%=basePath %>uploadFile/multiFile" method="post"  enctype="multipart/form-data">
-
-<input type="file" name="file">
-<input type="submit" value="upload"/>
-</form>
+	<form id="uploadMultiFileForm" name="uploadMultiFileForm" 
+		action="<%=basePath %>uploadFile/multiFile" method="post"  enctype="multipart/form-data">
+		<table class="table table-striped table-bordered table-hover" id="uploadFileTable" width="80%">
+		     <thead>
+				 <tr>
+						<th width="300">文件</th>
+						<th>类别</th>
+						<th >说明</th>
+						<th width="120">操作</th>   
+					</tr>
+				</thead>
+			<tbody>
+				<tr>
+					<td><input id="upFile1" class="file-label" type="file" name="file"></td>
+					<td></td>
+					<td><input type="text" size="120" name="mark" id="mark"/></td>
+					<td><input type="button" class="btn  btn-default" value="删除" onclick="deleteOneFileRec(this)"/></td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" class="btn btn-primary" value="上传所有文件"/>
+	</form>
 </div>
 </body>
 </html>
