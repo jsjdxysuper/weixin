@@ -36,11 +36,13 @@
 	});
 	function addUploadFile(){
 		debugger;
-		$("#uploadFileTable tbody").append("<tr>"+
-			"<td><input id='upFile1' class='file-label' type='file' name='file'></td>"+
-			"<td><input type='text' size='120'  name='mark' id='mark'/></td>"+
-			"<td><input type='button' class='btn  btn-default' value='删除' onclick='deleteOneFileRec(this)'/></td>"+
-			"</tr>");
+		var trContent = $($("#uploadFileTable tbody tr")[0]).html();
+		$("#uploadFileTable tbody").append("<tr>"+trContent+"</tr>");
+// 		$("#uploadFileTable tbody").append("<tr>"+
+// 			"<td><input id='upFile1' class='file-label' type='file' name='file'></td>"+
+// 			"<td><input type='text' size='120'  name='mark' id='mark'/></td>"+
+// 			"<td><input type='button' class='btn  btn-default' value='删除' onclick='deleteOneFileRec(this)'/></td>"+
+// 			"</tr>");
 	}
 	
 	function deleteOneFileRec(e){
@@ -77,7 +79,13 @@
 			<tbody>
 				<tr>
 					<td><input id="upFile1" class="file-label" type="file" name="file"></td>
-					<td></td>
+					<td>
+						<select name="fileType">
+							<c:forEach items="${sysCodeList }" var="data">
+								<option value="${data.cId }">${data.cName }</option>
+							</c:forEach>
+						</select>
+					</td>
 					<td><input type="text" size="120" name="mark" id="mark"/></td>
 					<td><input type="button" class="btn  btn-default" value="删除" onclick="deleteOneFileRec(this)"/></td>
 				</tr>

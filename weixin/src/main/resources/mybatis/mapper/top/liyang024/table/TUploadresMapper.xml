@@ -7,6 +7,10 @@
     <result column="c_mark" jdbcType="VARCHAR" property="cMark" />
     <result column="c_sufix" jdbcType="VARCHAR" property="cSufix" />
     <result column="c_type" jdbcType="VARCHAR" property="cType" />
+    <result column="c_typename" jdbcType="VARCHAR" property="cTypename" />
+    <result column="c_filepath" jdbcType="VARCHAR" property="cFilepath" />
+    <result column="c_filesize" jdbcType="INTEGER" property="cFilesize" />
+    <result column="c_date" jdbcType="VARCHAR" property="cDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    c_filename, c_time, c_mark, c_sufix, c_type
+    c_filename, c_time, c_mark, c_sufix, c_type, c_typename, c_filepath, c_filesize, 
+    c_date
   </sql>
   <select id="selectByExample" parameterType="top.liyang024.table.domain.TUploadresExample" resultMap="BaseResultMap">
     select
@@ -101,9 +106,13 @@
   </delete>
   <insert id="insert" parameterType="top.liyang024.table.domain.TUploadres">
     insert into t_uploadres (c_filename, c_time, c_mark, 
-      c_sufix, c_type)
+      c_sufix, c_type, c_typename, 
+      c_filepath, c_filesize, c_date
+      )
     values (#{cFilename,jdbcType=VARCHAR}, #{cTime,jdbcType=VARCHAR}, #{cMark,jdbcType=VARCHAR}, 
-      #{cSufix,jdbcType=VARCHAR}, #{cType,jdbcType=VARCHAR})
+      #{cSufix,jdbcType=VARCHAR}, #{cType,jdbcType=VARCHAR}, #{cTypename,jdbcType=VARCHAR}, 
+      #{cFilepath,jdbcType=VARCHAR}, #{cFilesize,jdbcType=INTEGER}, #{cDate,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="top.liyang024.table.domain.TUploadres">
     insert into t_uploadres
@@ -123,6 +132,18 @@
       <if test="cType != null">
         c_type,
       </if>
+      <if test="cTypename != null">
+        c_typename,
+      </if>
+      <if test="cFilepath != null">
+        c_filepath,
+      </if>
+      <if test="cFilesize != null">
+        c_filesize,
+      </if>
+      <if test="cDate != null">
+        c_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cFilename != null">
@@ -139,6 +160,18 @@
       </if>
       <if test="cType != null">
         #{cType,jdbcType=VARCHAR},
+      </if>
+      <if test="cTypename != null">
+        #{cTypename,jdbcType=VARCHAR},
+      </if>
+      <if test="cFilepath != null">
+        #{cFilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="cFilesize != null">
+        #{cFilesize,jdbcType=INTEGER},
+      </if>
+      <if test="cDate != null">
+        #{cDate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +199,18 @@
       <if test="record.cType != null">
         c_type = #{record.cType,jdbcType=VARCHAR},
       </if>
+      <if test="record.cTypename != null">
+        c_typename = #{record.cTypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cFilepath != null">
+        c_filepath = #{record.cFilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cFilesize != null">
+        c_filesize = #{record.cFilesize,jdbcType=INTEGER},
+      </if>
+      <if test="record.cDate != null">
+        c_date = #{record.cDate,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +222,11 @@
       c_time = #{record.cTime,jdbcType=VARCHAR},
       c_mark = #{record.cMark,jdbcType=VARCHAR},
       c_sufix = #{record.cSufix,jdbcType=VARCHAR},
-      c_type = #{record.cType,jdbcType=VARCHAR}
+      c_type = #{record.cType,jdbcType=VARCHAR},
+      c_typename = #{record.cTypename,jdbcType=VARCHAR},
+      c_filepath = #{record.cFilepath,jdbcType=VARCHAR},
+      c_filesize = #{record.cFilesize,jdbcType=INTEGER},
+      c_date = #{record.cDate,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +246,18 @@
       <if test="cType != null">
         c_type = #{cType,jdbcType=VARCHAR},
       </if>
+      <if test="cTypename != null">
+        c_typename = #{cTypename,jdbcType=VARCHAR},
+      </if>
+      <if test="cFilepath != null">
+        c_filepath = #{cFilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="cFilesize != null">
+        c_filesize = #{cFilesize,jdbcType=INTEGER},
+      </if>
+      <if test="cDate != null">
+        c_date = #{cDate,jdbcType=VARCHAR},
+      </if>
     </set>
     where c_filename = #{cFilename,jdbcType=VARCHAR}
   </update>
@@ -205,7 +266,11 @@
     set c_time = #{cTime,jdbcType=VARCHAR},
       c_mark = #{cMark,jdbcType=VARCHAR},
       c_sufix = #{cSufix,jdbcType=VARCHAR},
-      c_type = #{cType,jdbcType=VARCHAR}
+      c_type = #{cType,jdbcType=VARCHAR},
+      c_typename = #{cTypename,jdbcType=VARCHAR},
+      c_filepath = #{cFilepath,jdbcType=VARCHAR},
+      c_filesize = #{cFilesize,jdbcType=INTEGER},
+      c_date = #{cDate,jdbcType=VARCHAR}
     where c_filename = #{cFilename,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +36,7 @@ import top.liyang024.wechat.resouce.service.UploadFileService;
 
 @Controller
 public class UploadFileController {
-	
+	Logger log = LoggerFactory.getLogger(UploadFileController.class);
 	@Autowired
 	public UploadFileService uploadFileService;
 	
@@ -97,14 +100,30 @@ public class UploadFileController {
 				
 				System.out.println(targetFile.getAbsolutePath());
 				
-				return "Upload";
+				return "success";
 	}
 	
 	
 	@PostMapping(value="/uploadFile/multiFile")
-	public String multiFile(@RequestParam("file") MultipartFile[] uploadFiles,@RequestParam("mark") String[] name,HttpSession session) {
-		String ret = "Upload";
+	public String multiFile(@RequestParam("file") MultipartFile[] uploadFiles,
+			@RequestParam("mark") String[] markList,
+			@RequestParam("fileType") String[] fileTypeList,
+			HttpSession session) {
+		String ret = "success";
 		String time = Utilities.getToday()+"-"+Utilities.getSysTime().replaceAll(":", "-");
+		String leftPath = session.getServletContext().getRealPath("/")+"../resources";
+		File pathFile = new File(leftPath);
+		if(pathFile.exists()) {
+			if(pathFile.isDirectory())
+				log.info("目录已经存在");
+			else {
+				log.info("存在文件与文件夹重名");
+			}
+		}else {
+			log.info("目录不存在，创建目录...");
+			pathFile.mkdir();
+		}
+		List<File>fileList = new ArrayList();
 		try {
 			for(int i=0;i<uploadFiles.length;i++) {
 				MultipartFile item = uploadFiles[i];
@@ -112,25 +131,45 @@ public class UploadFileController {
 				if(item.getSize()>0) {
 					String fileName = item.getOriginalFilename();
 					fileName = time+(i+1)+"_"+fileName;
-					String leftPath = session.getServletContext().getRealPath("/")+"../resources";
-					File file = new File(leftPath,fileName);
 					
+					File file = new File(leftPath,fileName);
+					fileList.add(file);
 					item.transferTo(file);
 				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+		String cTime = Utilities.getSysTime();
+		String cDate = Utilities.getToday();
+		List<TUploadres> fileProList = new ArrayList<TUploadres>();
+		for(int i=0;i<uploadFiles.length;i++) {
+			TUploadres oneFilePro = new TUploadres();
+			oneFilePro.setcFilename(fileList.get(i).getName());
+			oneFilePro.setcFilepath(fileList.get(i).getPath());
+			oneFilePro.setcMark(markList[i]);
+			String suffix = oneFilePro.getcFilename().
+					substring(oneFilePro.getcFilename().lastIndexOf("."), oneFilePro.getcFilename().length());
+			oneFilePro.setcSufix(suffix);
+			oneFilePro.setcTime(cTime);
+			oneFilePro.setcDate(cDate);
+			oneFilePro.setcFilesize((int)(fileList.get(i).length()/1000));
+			oneFilePro.setcType(fileTypeList[i]);
+			fileProList.add(oneFilePro);
+		}
+		int count = uploadFileService.storeFileList(fileProList);
 		return ret;
 	}
 	
 	
 	@RequestMapping(value="uploadFile/init")
 	public ModelAndView init(){
+		
 		ModelAndView mv = new ModelAndView("Upload");
-
 		List<TSysCode>sysCodeList = uploadFileService.getFileTypeList();
+		mv.addObject("sysCodeList", sysCodeList);
+		
+		
 		return mv;
 	}
 	

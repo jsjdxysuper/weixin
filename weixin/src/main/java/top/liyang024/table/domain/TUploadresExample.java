@@ -453,6 +453,276 @@ public class TUploadresExample {
             addCriterion("c_type not between", value1, value2, "cType");
             return (Criteria) this;
         }
+
+        public Criteria andCTypenameIsNull() {
+            addCriterion("c_typename is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameIsNotNull() {
+            addCriterion("c_typename is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameEqualTo(String value) {
+            addCriterion("c_typename =", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameNotEqualTo(String value) {
+            addCriterion("c_typename <>", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameGreaterThan(String value) {
+            addCriterion("c_typename >", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameGreaterThanOrEqualTo(String value) {
+            addCriterion("c_typename >=", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameLessThan(String value) {
+            addCriterion("c_typename <", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameLessThanOrEqualTo(String value) {
+            addCriterion("c_typename <=", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameLike(String value) {
+            addCriterion("c_typename like", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameNotLike(String value) {
+            addCriterion("c_typename not like", value, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameIn(List<String> values) {
+            addCriterion("c_typename in", values, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameNotIn(List<String> values) {
+            addCriterion("c_typename not in", values, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameBetween(String value1, String value2) {
+            addCriterion("c_typename between", value1, value2, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypenameNotBetween(String value1, String value2) {
+            addCriterion("c_typename not between", value1, value2, "cTypename");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathIsNull() {
+            addCriterion("c_filepath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathIsNotNull() {
+            addCriterion("c_filepath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathEqualTo(String value) {
+            addCriterion("c_filepath =", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathNotEqualTo(String value) {
+            addCriterion("c_filepath <>", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathGreaterThan(String value) {
+            addCriterion("c_filepath >", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathGreaterThanOrEqualTo(String value) {
+            addCriterion("c_filepath >=", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathLessThan(String value) {
+            addCriterion("c_filepath <", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathLessThanOrEqualTo(String value) {
+            addCriterion("c_filepath <=", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathLike(String value) {
+            addCriterion("c_filepath like", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathNotLike(String value) {
+            addCriterion("c_filepath not like", value, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathIn(List<String> values) {
+            addCriterion("c_filepath in", values, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathNotIn(List<String> values) {
+            addCriterion("c_filepath not in", values, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathBetween(String value1, String value2) {
+            addCriterion("c_filepath between", value1, value2, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilepathNotBetween(String value1, String value2) {
+            addCriterion("c_filepath not between", value1, value2, "cFilepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeIsNull() {
+            addCriterion("c_filesize is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeIsNotNull() {
+            addCriterion("c_filesize is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeEqualTo(Integer value) {
+            addCriterion("c_filesize =", value, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeNotEqualTo(Integer value) {
+            addCriterion("c_filesize <>", value, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeGreaterThan(Integer value) {
+            addCriterion("c_filesize >", value, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("c_filesize >=", value, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeLessThan(Integer value) {
+            addCriterion("c_filesize <", value, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeLessThanOrEqualTo(Integer value) {
+            addCriterion("c_filesize <=", value, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeIn(List<Integer> values) {
+            addCriterion("c_filesize in", values, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeNotIn(List<Integer> values) {
+            addCriterion("c_filesize not in", values, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeBetween(Integer value1, Integer value2) {
+            addCriterion("c_filesize between", value1, value2, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFilesizeNotBetween(Integer value1, Integer value2) {
+            addCriterion("c_filesize not between", value1, value2, "cFilesize");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateIsNull() {
+            addCriterion("c_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateIsNotNull() {
+            addCriterion("c_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateEqualTo(String value) {
+            addCriterion("c_date =", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateNotEqualTo(String value) {
+            addCriterion("c_date <>", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateGreaterThan(String value) {
+            addCriterion("c_date >", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateGreaterThanOrEqualTo(String value) {
+            addCriterion("c_date >=", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateLessThan(String value) {
+            addCriterion("c_date <", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateLessThanOrEqualTo(String value) {
+            addCriterion("c_date <=", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateLike(String value) {
+            addCriterion("c_date like", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateNotLike(String value) {
+            addCriterion("c_date not like", value, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateIn(List<String> values) {
+            addCriterion("c_date in", values, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateNotIn(List<String> values) {
+            addCriterion("c_date not in", values, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateBetween(String value1, String value2) {
+            addCriterion("c_date between", value1, value2, "cDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCDateNotBetween(String value1, String value2) {
+            addCriterion("c_date not between", value1, value2, "cDate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -11,6 +11,14 @@ public class TUploadres {
 
     private String cType;
 
+    private String cTypename;
+
+    private String cFilepath;
+
+    private Integer cFilesize;
+
+    private String cDate;
+
     public String getcFilename() {
         return cFilename;
     }
@@ -49,5 +57,37 @@ public class TUploadres {
 
     public void setcType(String cType) {
         this.cType = cType == null ? null : cType.trim();
+    }
+
+    public String getcTypename() {
+        return cTypename;
+    }
+
+    public void setcTypename(String cTypename) {
+        this.cTypename = cTypename == null ? null : cTypename.trim();
+    }
+
+    public String getcFilepath() {
+        return cFilepath;
+    }
+
+    public void setcFilepath(String cFilepath) {
+        this.cFilepath = cFilepath == null ? null : cFilepath.trim();
+    }
+
+    public Integer getcFilesize() {
+        return cFilesize;
+    }
+
+    public void setcFilesize(Integer cFilesize) {
+        this.cFilesize = cFilesize;
+    }
+
+    public String getcDate() {
+        return cDate;
+    }
+
+    public void setcDate(String cDate) {
+        this.cDate = cDate == null ? null : cDate.trim();
     }
 }
