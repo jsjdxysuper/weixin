@@ -39,4 +39,11 @@ public class UploadFileService {
 		}
 		return insertCount;
 	}
+	
+	public List<TUploadres>getUploadresList(){
+		TUploadresExample example = new TUploadresExample();
+		example.setOrderByClause("c_date desc,c_time desc");
+		List<TUploadres> selectByExample = uploadresMapper.selectByExample(example);
+		return selectByExample;
+	}
 }
