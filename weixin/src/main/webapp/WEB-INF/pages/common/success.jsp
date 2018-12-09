@@ -39,7 +39,14 @@
 </head>
 
 <body>
-<h3><a href="javascript:history.back(-1)"><&lt:返回上一页</a></h3>
+ <%String ref = request.getHeader("REFERER");%>
+<!--       <input type="button" id="backBtn" name="button" class="button_return" value="返回" -->
+<%--       onclick="javascript:window.location='<%=ref%>'"> --%>
+<!-- <h3><a href="javascript:history.back(-1)"><&lt:返回上一页</a></h3> -->
 <h1>操作成功</h1>
+<br/>
+<h3><a href="javascript:window.location='<%=ref%>'"><&lt:返回上一页</a></h3>
+<br />
+<h2>${retMsg.msg }</h2>
 </body>
 </html>

@@ -35,7 +35,6 @@
 		
 	});
 	function addUploadFile(){
-		debugger;
 		var trContent = $($("#uploadFileTable tbody tr")[0]).html();
 		$("#uploadFileTable tbody").append("<tr>"+trContent+"</tr>");
 // 		$("#uploadFileTable tbody").append("<tr>"+
@@ -81,8 +80,8 @@
 					<td><input id="upFile1" class="file-label" type="file" name="file"></td>
 					<td>
 						<select name="fileType">
-							<c:forEach items="${sysCodeList }" var="data">
-								<option value="${data.cId }">${data.cName }</option>
+							<c:forEach items="${fileTypeList }" var="data">
+								<option value="${data.cKey }">${data.cValue}</option>
 							</c:forEach>
 						</select>
 					</td>

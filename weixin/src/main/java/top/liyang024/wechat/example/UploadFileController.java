@@ -30,7 +30,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kedong.tool.Utilities;
 
+import top.liyang024.base.RetJsonMsg;
+import top.liyang024.table.dao.TSysCodeValMapper;
 import top.liyang024.table.domain.TSysCode;
+import top.liyang024.table.domain.TSysCodeVal;
+import top.liyang024.table.domain.TSysCodeValKey;
 import top.liyang024.table.domain.TUploadres;
 import top.liyang024.wechat.resouce.service.UploadFileService;
 
@@ -38,7 +42,9 @@ import top.liyang024.wechat.resouce.service.UploadFileService;
 public class UploadFileController {
 	Logger log = LoggerFactory.getLogger(UploadFileController.class);
 	@Autowired
-	public UploadFileService uploadFileService;
+	private UploadFileService uploadFileService;
+	@Autowired
+	private TSysCodeValMapper sysCodeValMapper;
 	
 	@RequestMapping(value="/uploadFile/upload")
 	public String upload(HttpServletRequest request){
@@ -105,11 +111,11 @@ public class UploadFileController {
 	
 	
 	@PostMapping(value="/uploadFile/multiFile")
-	public String multiFile(@RequestParam("file") MultipartFile[] uploadFiles,
+	public ModelAndView multiFile(@RequestParam("file") MultipartFile[] uploadFiles,
 			@RequestParam("mark") String[] markList,
 			@RequestParam("fileType") String[] fileTypeList,
 			HttpSession session) {
-		String ret = "success";
+
 		String time = Utilities.getToday()+"-"+Utilities.getSysTime().replaceAll(":", "-");
 		String leftPath = session.getServletContext().getRealPath("/")+"../resources";
 		File pathFile = new File(leftPath);
@@ -155,10 +161,22 @@ public class UploadFileController {
 			oneFilePro.setcDate(cDate);
 			oneFilePro.setcFilesize((int)(fileList.get(i).length()/1000));
 			oneFilePro.setcType(fileTypeList[i]);
+			TSysCodeValKey key = new TSysCodeValKey();
+			key.setcTypeid("uploadrec");
+			key.setcId("resType");
+			key.setcKey(fileTypeList[i]);
+			TSysCodeVal sysCodeVal = sysCodeValMapper.selectByPrimaryKey(key);
+			oneFilePro.setcTypename(sysCodeVal.getcValue());
 			fileProList.add(oneFilePro);
 		}
 		int count = uploadFileService.storeFileList(fileProList);
-		return ret;
+		RetJsonMsg retMsg = new RetJsonMsg();
+		retMsg.setCode(1);
+		retMsg.setMsg("成功上传"+count+"份文件");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/success");
+		mv.addObject("retMsg", retMsg);
+		return mv;
 	}
 	
 	
@@ -166,8 +184,8 @@ public class UploadFileController {
 	public ModelAndView init(){
 		
 		ModelAndView mv = new ModelAndView("Upload");
-		List<TSysCode>sysCodeList = uploadFileService.getFileTypeList();
-		mv.addObject("sysCodeList", sysCodeList);
+		List<TSysCodeVal> fileTypeList = uploadFileService.getFileTypeList();
+		mv.addObject("fileTypeList", fileTypeList);
 		
 		
 		return mv;

@@ -241,7 +241,8 @@ $(function(){
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="https://item.taobao.com/item.htm?id=539837098284"
-					class="navbar-brand"> <small> <!--<img src="images/logo.png" width="470px">-->
+					class="navbar-brand"> <large>东方暿艺小程序后台管理程序<large><small> <!--<img src="images/logo.png" width="470px">-->
+					
 				</small>
 				</a>
 				<!-- /.brand -->
