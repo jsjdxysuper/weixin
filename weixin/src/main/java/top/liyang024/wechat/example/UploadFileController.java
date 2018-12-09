@@ -153,7 +153,8 @@ public class UploadFileController {
 			TUploadres oneFilePro = new TUploadres();
 			oneFilePro.setcFilename(fileList.get(i).getName());
 			oneFilePro.setcFilepath(fileList.get(i).getPath());
-			oneFilePro.setcMark(markList[i]);
+			if(markList.length>i)
+				oneFilePro.setcMark(markList[i]);
 			String suffix = oneFilePro.getcFilename().
 					substring(oneFilePro.getcFilename().lastIndexOf("."), oneFilePro.getcFilename().length());
 			oneFilePro.setcSufix(suffix);

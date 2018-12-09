@@ -80,7 +80,7 @@ function fileList(){
     </div>
     <div class="border clearfix">
        <span class="l_f">
-        <a href="javascript:fileList()" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp;查询</a>
+        <a href="javascript:fileList()" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;查询</a>
         <a href="javascript:batchDel()" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp;批量删除</a>
        </span>
        <span class="r_f">共：<b id="countAll"></b>条</span>
