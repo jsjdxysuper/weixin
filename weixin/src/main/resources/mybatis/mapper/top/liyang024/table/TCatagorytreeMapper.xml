@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.liyang024.table.dao.TCatagorytreeMapper">
+  <resultMap id="BaseResultMap" type="top.liyang024.table.domain.TCatagorytree">
+    <id column="c_uid" jdbcType="VARCHAR" property="cUid" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="c_mark1" jdbcType="VARCHAR" property="cMark1" />
+    <result column="c_mark2" jdbcType="VARCHAR" property="cMark2" />
+    <result column="c_mark3" jdbcType="VARCHAR" property="cMark3" />
+    <result column="c_image" jdbcType="VARCHAR" property="cImage" />
+    <result column="c_layername" jdbcType="VARCHAR" property="cLayername" />
+    <result column="c_layerid" jdbcType="VARCHAR" property="cLayerid" />
+    <result column="c_parentid" jdbcType="VARCHAR" property="cParentid" />
+    <result column="c_index" jdbcType="TINYINT" property="cIndex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    c_uid, c_name, c_mark1, c_mark2, c_mark3, c_image, c_layername, c_layerid, c_parentid, 
+    c_index
+  </sql>
+  <select id="selectByExample" parameterType="top.liyang024.table.domain.TCatagorytreeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_catagorytree
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_catagorytree
+    where c_uid = #{cUid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_catagorytree
+    where c_uid = #{cUid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.liyang024.table.domain.TCatagorytreeExample">
+    delete from t_catagorytree
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.liyang024.table.domain.TCatagorytree">
+    insert into t_catagorytree (c_uid, c_name, c_mark1, 
+      c_mark2, c_mark3, c_image, 
+      c_layername, c_layerid, c_parentid, 
+      c_index)
+    values (#{cUid,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{cMark1,jdbcType=VARCHAR}, 
+      #{cMark2,jdbcType=VARCHAR}, #{cMark3,jdbcType=VARCHAR}, #{cImage,jdbcType=VARCHAR}, 
+      #{cLayername,jdbcType=VARCHAR}, #{cLayerid,jdbcType=VARCHAR}, #{cParentid,jdbcType=VARCHAR}, 
+      #{cIndex,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="top.liyang024.table.domain.TCatagorytree">
+    insert into t_catagorytree
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cUid != null">
+        c_uid,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="cMark1 != null">
+        c_mark1,
+      </if>
+      <if test="cMark2 != null">
+        c_mark2,
+      </if>
+      <if test="cMark3 != null">
+        c_mark3,
+      </if>
+      <if test="cImage != null">
+        c_image,
+      </if>
+      <if test="cLayername != null">
+        c_layername,
+      </if>
+      <if test="cLayerid != null">
+        c_layerid,
+      </if>
+      <if test="cParentid != null">
+        c_parentid,
+      </if>
+      <if test="cIndex != null">
+        c_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cUid != null">
+        #{cUid,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cMark1 != null">
+        #{cMark1,jdbcType=VARCHAR},
+      </if>
+      <if test="cMark2 != null">
+        #{cMark2,jdbcType=VARCHAR},
+      </if>
+      <if test="cMark3 != null">
+        #{cMark3,jdbcType=VARCHAR},
+      </if>
+      <if test="cImage != null">
+        #{cImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cLayername != null">
+        #{cLayername,jdbcType=VARCHAR},
+      </if>
+      <if test="cLayerid != null">
+        #{cLayerid,jdbcType=VARCHAR},
+      </if>
+      <if test="cParentid != null">
+        #{cParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="cIndex != null">
+        #{cIndex,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.liyang024.table.domain.TCatagorytreeExample" resultType="java.lang.Long">
+    select count(*) from t_catagorytree
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_catagorytree
+    <set>
+      <if test="record.cUid != null">
+        c_uid = #{record.cUid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cName != null">
+        c_name = #{record.cName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cMark1 != null">
+        c_mark1 = #{record.cMark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cMark2 != null">
+        c_mark2 = #{record.cMark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cMark3 != null">
+        c_mark3 = #{record.cMark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cImage != null">
+        c_image = #{record.cImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cLayername != null">
+        c_layername = #{record.cLayername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cLayerid != null">
+        c_layerid = #{record.cLayerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cParentid != null">
+        c_parentid = #{record.cParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cIndex != null">
+        c_index = #{record.cIndex,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_catagorytree
+    set c_uid = #{record.cUid,jdbcType=VARCHAR},
+      c_name = #{record.cName,jdbcType=VARCHAR},
+      c_mark1 = #{record.cMark1,jdbcType=VARCHAR},
+      c_mark2 = #{record.cMark2,jdbcType=VARCHAR},
+      c_mark3 = #{record.cMark3,jdbcType=VARCHAR},
+      c_image = #{record.cImage,jdbcType=VARCHAR},
+      c_layername = #{record.cLayername,jdbcType=VARCHAR},
+      c_layerid = #{record.cLayerid,jdbcType=VARCHAR},
+      c_parentid = #{record.cParentid,jdbcType=VARCHAR},
+      c_index = #{record.cIndex,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.liyang024.table.domain.TCatagorytree">
+    update t_catagorytree
+    <set>
+      <if test="cName != null">
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cMark1 != null">
+        c_mark1 = #{cMark1,jdbcType=VARCHAR},
+      </if>
+      <if test="cMark2 != null">
+        c_mark2 = #{cMark2,jdbcType=VARCHAR},
+      </if>
+      <if test="cMark3 != null">
+        c_mark3 = #{cMark3,jdbcType=VARCHAR},
+      </if>
+      <if test="cImage != null">
+        c_image = #{cImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cLayername != null">
+        c_layername = #{cLayername,jdbcType=VARCHAR},
+      </if>
+      <if test="cLayerid != null">
+        c_layerid = #{cLayerid,jdbcType=VARCHAR},
+      </if>
+      <if test="cParentid != null">
+        c_parentid = #{cParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="cIndex != null">
+        c_index = #{cIndex,jdbcType=TINYINT},
+      </if>
+    </set>
+    where c_uid = #{cUid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.liyang024.table.domain.TCatagorytree">
+    update t_catagorytree
+    set c_name = #{cName,jdbcType=VARCHAR},
+      c_mark1 = #{cMark1,jdbcType=VARCHAR},
+      c_mark2 = #{cMark2,jdbcType=VARCHAR},
+      c_mark3 = #{cMark3,jdbcType=VARCHAR},
+      c_image = #{cImage,jdbcType=VARCHAR},
+      c_layername = #{cLayername,jdbcType=VARCHAR},
+      c_layerid = #{cLayerid,jdbcType=VARCHAR},
+      c_parentid = #{cParentid,jdbcType=VARCHAR},
+      c_index = #{cIndex,jdbcType=TINYINT}
+    where c_uid = #{cUid,jdbcType=VARCHAR}
+  </update>
+</mapper>
