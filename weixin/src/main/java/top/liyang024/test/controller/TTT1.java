@@ -1,4 +1,4 @@
-package controller;
+package top.liyang024.test.controller;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import top.liyang024.table.domain.TUrlExample;
 
 
 @Controller
-public class TTT {
+public class TTT1 {
 	@Autowired
 	private TUrlMapper tUrlMapper;
 	@RequestMapping(value="/oka")

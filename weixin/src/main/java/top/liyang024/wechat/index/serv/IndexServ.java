@@ -1,4 +1,4 @@
-package top.liyang024.index.serv;
+package top.liyang024.wechat.index.serv;
 
 import java.util.ArrayList;
 import java.util.List;

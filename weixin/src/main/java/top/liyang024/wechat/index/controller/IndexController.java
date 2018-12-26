@@ -1,4 +1,4 @@
-package top.liyang024.index.controller;
+package top.liyang024.wechat.index.controller;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import top.liyang024.index.serv.IndexServ;
 import top.liyang024.table.dao.TUrlMapper;
 import top.liyang024.table.domain.TUrl;
 import top.liyang024.table.domain.TUrlExample;
+import top.liyang024.wechat.index.serv.IndexServ;
 
 @Controller
 public class IndexController {

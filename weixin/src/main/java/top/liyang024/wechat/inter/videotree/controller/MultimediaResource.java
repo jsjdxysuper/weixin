@@ -1,4 +1,4 @@
-package top.liyang024.smallprobackinter.controller;
+package top.liyang024.wechat.inter.videotree.controller;
 
 import java.util.List;
 
