@@ -22,7 +22,7 @@
         <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
-			<script src="assets/js/jquery.min.js"></script>
+			<script src="<%=basePath %>assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -68,7 +68,7 @@
       <ul class="search_content clearfix">
        <li><label class="l_f">会员名称</label><input name="" type="text"  class="text_add" placeholder="输入会员名称、电话、邮箱"  style=" width:400px"/></li>
        <li><label class="l_f">添加时间</label><input class="inline laydate-icon" id="start" style=" margin-left:10px;"></li>
-       <li style="width:90px;"><button type="button" class="btn_search"><i class="icon-search"></i>查询</button></li>
+       <li style="width:90px;"><button type="button" id="searchBtn" class="btn_search"><i class="icon-search"></i>查询</button></li>
       </ul>
     </div>
      <!---->
@@ -219,6 +219,41 @@
 </html>
 <script>
 jQuery(function($) {
+	
+	$('#searchBtn').bind('click', function() {
+		$.ajax({
+			type: "POST",
+			url: "<%=basePath %>/catagory/list",
+			dataType:"json",
+			data: {},
+			success: function(msg){
+				debugger;
+// 				$(arr).each(function(i,data){
+// 					var oneRow = new Array();
+// 					oneRow.push("<label><input type='checkbox' class='ace'><span class='lbl'></span></label>");
+// 					oneRow.push(data.cFilename);
+// 					oneRow.push(data.cFilesize);
+// 					oneRow.push(data.cTypename);
+// 					oneRow.push(data.cMark);
+// 					oneRow.push(data.cDate);
+// 					oneRow.push(data.cTime);
+// 					oneRow.push("<a title='删除' href='javascript:;'  onclick=\"member_del(this,\'1\')\" class='btn btn-xs btn-warning' ><i class='fa fa-trash  bigger-120'></i></a>");
+// 					tableData.push(oneRow);
+// 				});
+
+// 				var table = $("#uploadresListTable").dataTable({
+// 					"data":tableData,
+// 					destroy: true,
+// 					bAutoWidth: false,//是否自动宽度
+// 				});
+
+			},
+			error:function(){
+			
+			}
+		});
+	});
+
 				var oTable1 = $('#sample-table').dataTable( {
 				"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 		"bStateSave": true,//状态保存
@@ -252,7 +287,7 @@ jQuery(function($) {
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-			})
+			});
 /*用户-添加*/
  $('#member_add').on('click', function(){
     layer.open({

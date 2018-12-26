@@ -1,5 +1,6 @@
 package top.liyang024.wechat.inter.videotree.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,17 @@ public class VideoTreeController {
 	@ResponseBody
 	@RequestMapping(value="/catagoryTree/catagoryList",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
 	public String catagoryList() {
-		List<TCatagorytree> catagoryList = videoTreeServ.catagoryList();
+		List<TCatagorytree> catagoryList = videoTreeServ.catagoryList("second");
+		List<TCatagorytree> catagorySubTreeList = videoTreeServ.catagoryList("third");
+		for(int i=0;i<catagoryList.size();i++) {
+			catagoryList.get(i).setSubTree(new ArrayList<TCatagorytree>());
+			for(int j=0;j<catagorySubTreeList.size();j++) {
+				if(catagorySubTreeList.get(j).getcParentid().
+						equalsIgnoreCase(catagoryList.get(i).getcUid())) {
+					catagoryList.get(i).getSubTree().add(catagorySubTreeList.get(j));
+				}
+			}
+		}
 		return JSONArray.fromObject(catagoryList).toString();
 	}
 }
