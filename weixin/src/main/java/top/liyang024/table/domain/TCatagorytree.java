@@ -4,26 +4,18 @@ import java.util.List;
 
 public class TCatagorytree {
     private String cUid;
-
     private String cName;
-
     private String cMark1;
-
     private String cMark2;
-
     private String cMark3;
-
     private String cImage;
-
     private String cLayername;
-
     private String cLayerid;
-
     private String cParentid;
-
     private Byte cIndex;
-
+    private String cType;
     private List<TCatagorytree>subTree;
+    
     public String getcUid() {
         return cUid;
     }
@@ -102,6 +94,14 @@ public class TCatagorytree {
 
     public void setcIndex(Byte cIndex) {
         this.cIndex = cIndex;
+    }
+
+    public String getcType() {
+        return cType;
+    }
+
+    public void setcType(String cType) {
+        this.cType = cType == null ? null : cType.trim();
     }
 
 	public List<TCatagorytree> getSubTree() {

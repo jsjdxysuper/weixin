@@ -793,6 +793,76 @@ public class TCatagorytreeExample {
             addCriterion("c_index not between", value1, value2, "cIndex");
             return (Criteria) this;
         }
+
+        public Criteria andCTypeIsNull() {
+            addCriterion("c_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeIsNotNull() {
+            addCriterion("c_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeEqualTo(String value) {
+            addCriterion("c_type =", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeNotEqualTo(String value) {
+            addCriterion("c_type <>", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeGreaterThan(String value) {
+            addCriterion("c_type >", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("c_type >=", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeLessThan(String value) {
+            addCriterion("c_type <", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeLessThanOrEqualTo(String value) {
+            addCriterion("c_type <=", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeLike(String value) {
+            addCriterion("c_type like", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeNotLike(String value) {
+            addCriterion("c_type not like", value, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeIn(List<String> values) {
+            addCriterion("c_type in", values, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeNotIn(List<String> values) {
+            addCriterion("c_type not in", values, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeBetween(String value1, String value2) {
+            addCriterion("c_type between", value1, value2, "cType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeNotBetween(String value1, String value2) {
+            addCriterion("c_type not between", value1, value2, "cType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

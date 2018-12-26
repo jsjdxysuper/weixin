@@ -12,6 +12,7 @@
     <result column="c_layerid" jdbcType="VARCHAR" property="cLayerid" />
     <result column="c_parentid" jdbcType="VARCHAR" property="cParentid" />
     <result column="c_index" jdbcType="TINYINT" property="cIndex" />
+    <result column="c_type" jdbcType="VARCHAR" property="cType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     c_uid, c_name, c_mark1, c_mark2, c_mark3, c_image, c_layername, c_layerid, c_parentid, 
-    c_index
+    c_index, c_type
   </sql>
   <select id="selectByExample" parameterType="top.liyang024.table.domain.TCatagorytreeExample" resultMap="BaseResultMap">
     select
@@ -109,11 +110,11 @@
     insert into t_catagorytree (c_uid, c_name, c_mark1, 
       c_mark2, c_mark3, c_image, 
       c_layername, c_layerid, c_parentid, 
-      c_index)
+      c_index, c_type)
     values (#{cUid,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{cMark1,jdbcType=VARCHAR}, 
       #{cMark2,jdbcType=VARCHAR}, #{cMark3,jdbcType=VARCHAR}, #{cImage,jdbcType=VARCHAR}, 
       #{cLayername,jdbcType=VARCHAR}, #{cLayerid,jdbcType=VARCHAR}, #{cParentid,jdbcType=VARCHAR}, 
-      #{cIndex,jdbcType=TINYINT})
+      #{cIndex,jdbcType=TINYINT}, #{cType,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="top.liyang024.table.domain.TCatagorytree">
     insert into t_catagorytree
@@ -148,6 +149,9 @@
       <if test="cIndex != null">
         c_index,
       </if>
+      <if test="cType != null">
+        c_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cUid != null">
@@ -179,6 +183,9 @@
       </if>
       <if test="cIndex != null">
         #{cIndex,jdbcType=TINYINT},
+      </if>
+      <if test="cType != null">
+        #{cType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.cIndex != null">
         c_index = #{record.cIndex,jdbcType=TINYINT},
       </if>
+      <if test="record.cType != null">
+        c_type = #{record.cType,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       c_layername = #{record.cLayername,jdbcType=VARCHAR},
       c_layerid = #{record.cLayerid,jdbcType=VARCHAR},
       c_parentid = #{record.cParentid,jdbcType=VARCHAR},
-      c_index = #{record.cIndex,jdbcType=TINYINT}
+      c_index = #{record.cIndex,jdbcType=TINYINT},
+      c_type = #{record.cType,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="cIndex != null">
         c_index = #{cIndex,jdbcType=TINYINT},
       </if>
+      <if test="cType != null">
+        c_type = #{cType,jdbcType=VARCHAR},
+      </if>
     </set>
     where c_uid = #{cUid,jdbcType=VARCHAR}
   </update>
@@ -285,7 +299,8 @@
       c_layername = #{cLayername,jdbcType=VARCHAR},
       c_layerid = #{cLayerid,jdbcType=VARCHAR},
       c_parentid = #{cParentid,jdbcType=VARCHAR},
-      c_index = #{cIndex,jdbcType=TINYINT}
+      c_index = #{cIndex,jdbcType=TINYINT},
+      c_type = #{cType,jdbcType=VARCHAR}
     where c_uid = #{cUid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -81,94 +81,25 @@
      </div>
      <!---->
      <div class="table_menu_list">
-       <table class="table table-striped table-bordered table-hover" id="sample-table">
+       <table class="table table-striped table-bordered table-hover" id="catagoryTable">
 		<thead>
 		 <tr>
 				<th width="25"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
 				<th width="80">ID</th>
-				<th width="100">用户名</th>
-				<th width="80">性别</th>
-				<th width="120">手机</th>
-				<th width="150">邮箱</th>
-				<th width="">地址</th>
-				<th width="180">加入时间</th>
-                <th width="100">等级</th>
-				<th width="70">状态</th>                
+				<th width="100">名称</th>
+				<th width="80">mark1</th>
+				<th width="120">mark2</th>
+				<th width="150">mark3</th>
+				<th width="">图片</th>
+				<th width="180">层级名称</th>
+                <th width="100">层级id</th>
+				<th width="70">父节点id</th>                
+				<th width="250">排序</th>
+				<th width="250">类别id</th>
 				<th width="250">操作</th>
 			</tr>
 		</thead>
 	<tbody>
-		<tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>1</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','500','400')">张三</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>普通用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('550')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
-        <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>2</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','1031','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>普通用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('310')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-        
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>3</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','10301','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>银牌用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit(,'410')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-         
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>4</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','10001','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>银牌用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('560')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-        
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
          <tr>
           <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
           <td>5</td>
@@ -227,7 +158,38 @@ jQuery(function($) {
 			dataType:"json",
 			data: {},
 			success: function(msg){
+				$(arr).each(function(i,data){
+					data.splice(0,0,"");
+					data.splice(data.length,0,"");
+				});
 				debugger;
+				$("#catagoryTable").DataTable({
+					data:msg,
+					columns:[
+						{data:'cUid'},
+						{data:'cName'},
+						{data:'cMark1'},
+						{data:'cMark2'},
+						{data:'cMark3'},
+						{data:'cImage'},
+						{data:'cLayername'},
+						{data:'cLayerid'},
+						{data:'cParentid'},
+						{data:'cIndex'},
+						{data:'cType'}
+					]
+				});
+// 				private String cUid;
+// 			    private String cName;
+// 			    private String cMark1;
+// 			    private String cMark2;
+// 			    private String cMark3;
+// 			    private String cImage;
+// 			    private String cLayername;
+// 			    private String cLayerid;
+// 			    private String cParentid;
+// 			    private Byte cIndex;
+// 			    private String cType;
 // 				$(arr).each(function(i,data){
 // 					var oneRow = new Array();
 // 					oneRow.push("<label><input type='checkbox' class='ace'><span class='lbl'></span></label>");

@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import net.sf.json.JSONArray;
 import top.liyang024.table.domain.TCatagorytree;
-import top.liyang024.table.domain.TUrl;
 import top.liyang024.wechat.catagorytree.serv.CatagoryTreeServ;
 
 @Controller
@@ -21,7 +19,7 @@ public class CatagoryTreeController {
 	
 	@RequestMapping(value="/catagory/init")
 	public ModelAndView home(){
-		ModelAndView mv = new ModelAndView("userList");
+		ModelAndView mv = new ModelAndView("catagoryList");
 		return mv;
 	}
 	
