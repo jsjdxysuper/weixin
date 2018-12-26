@@ -14,10 +14,12 @@ public class VideoTreeServ {
 	@Autowired
 	private TCatagorytreeMapper catagorytreeMapper;
 	
-	public List<TCatagorytree>catagoryList(){
+	public List<TCatagorytree>catagoryList(String layer){
 		TCatagorytreeExample example = new TCatagorytreeExample();
-		example.createCriteria().andCLayeridEqualTo("second");
+		example.createCriteria().andCLayeridEqualTo(layer);
+		example.setOrderByClause("c_index");
 		List<TCatagorytree> catagoryList = catagorytreeMapper.selectByExample(example);
 		return catagoryList;
 	}
+
 }

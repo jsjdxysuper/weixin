@@ -1,5 +1,7 @@
 package top.liyang024.table.domain;
 
+import java.util.List;
+
 public class TCatagorytree {
     private String cUid;
 
@@ -21,6 +23,7 @@ public class TCatagorytree {
 
     private Byte cIndex;
 
+    private List<TCatagorytree>subTree;
     public String getcUid() {
         return cUid;
     }
@@ -100,4 +103,13 @@ public class TCatagorytree {
     public void setcIndex(Byte cIndex) {
         this.cIndex = cIndex;
     }
+
+	public List<TCatagorytree> getSubTree() {
+		return subTree;
+	}
+
+	public void setSubTree(List<TCatagorytree> subTree) {
+		this.subTree = subTree;
+	}
+    
 }
