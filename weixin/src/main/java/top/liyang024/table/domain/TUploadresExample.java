@@ -723,6 +723,76 @@ public class TUploadresExample {
             addCriterion("c_date not between", value1, value2, "cDate");
             return (Criteria) this;
         }
+
+        public Criteria andCFiletypeIsNull() {
+            addCriterion("c_filetype is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeIsNotNull() {
+            addCriterion("c_filetype is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeEqualTo(String value) {
+            addCriterion("c_filetype =", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeNotEqualTo(String value) {
+            addCriterion("c_filetype <>", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeGreaterThan(String value) {
+            addCriterion("c_filetype >", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeGreaterThanOrEqualTo(String value) {
+            addCriterion("c_filetype >=", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeLessThan(String value) {
+            addCriterion("c_filetype <", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeLessThanOrEqualTo(String value) {
+            addCriterion("c_filetype <=", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeLike(String value) {
+            addCriterion("c_filetype like", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeNotLike(String value) {
+            addCriterion("c_filetype not like", value, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeIn(List<String> values) {
+            addCriterion("c_filetype in", values, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeNotIn(List<String> values) {
+            addCriterion("c_filetype not in", values, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeBetween(String value1, String value2) {
+            addCriterion("c_filetype between", value1, value2, "cFiletype");
+            return (Criteria) this;
+        }
+
+        public Criteria andCFiletypeNotBetween(String value1, String value2) {
+            addCriterion("c_filetype not between", value1, value2, "cFiletype");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

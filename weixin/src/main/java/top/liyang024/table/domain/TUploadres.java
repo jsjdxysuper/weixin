@@ -19,6 +19,8 @@ public class TUploadres {
 
     private String cDate;
 
+    private String cFiletype;
+
     public String getcFilename() {
         return cFilename;
     }
@@ -89,5 +91,13 @@ public class TUploadres {
 
     public void setcDate(String cDate) {
         this.cDate = cDate == null ? null : cDate.trim();
+    }
+
+    public String getcFiletype() {
+        return cFiletype;
+    }
+
+    public void setcFiletype(String cFiletype) {
+        this.cFiletype = cFiletype == null ? null : cFiletype.trim();
     }
 }

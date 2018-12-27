@@ -16,6 +16,7 @@
         <link href="<%=basePath %>assets/css/codemirror.css" rel="stylesheet">
         <link rel="stylesheet" href="<%=basePath %>assets/css/ace.min.css" />
         <link rel="stylesheet" href="<%=basePath %>assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="<%=basePath %>assets/bootstrap-plugin/bootstrap-combobox.css" />
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -56,6 +57,7 @@
         <script type="text/javascript" src="<%=basePath %>js/H-ui.admin.js"></script> 
         <script src="<%=basePath %>assets/layer/layer.js" type="text/javascript" ></script>
         <script src="<%=basePath %>assets/laydate/laydate.js" type="text/javascript"></script>
+        <script src="<%=basePath %>assets/bootstrap-plugin/bootstrap-combobox.js" type="text/javascript"></script>
 <title>用户列表</title>
 </head>
 
@@ -74,7 +76,7 @@
      <!---->
      <div class="border clearfix">
        <span class="l_f">
-        <a href="javascript:ovid()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
+        <a href="javascript:void()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
         <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
        </span>
        <span class="r_f">共：<b>2345</b>条</span>
@@ -100,122 +102,79 @@
 			</tr>
 		</thead>
 	<tbody>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>5</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','10001','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>银牌用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('510')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-        
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
       </tbody>
 	</table>
    </div>
   </div>
  </div>
 </div>
-<!--添加用户图层-->
-<div class="add_menber" id="add_menber_style" style="display:none">
-  
+<!--添加目录图层-->
+<div class="add_menber" id="add_catagory_style" style="display:none">
+  <form class="form-inline">
     <ul class=" page-content">
-     <li><label class="label_name">用&nbsp;&nbsp;户 &nbsp;名：</label><span class="add_name"><input value="" name="用户名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">真实姓名：</label><span class="add_name"><input name="真实姓名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
-     <label><input name="form-field-radio" type="radio" checked="checked" class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">保密</span></label>
-     </span>
-     <div class="prompt r_f"></div>
-     </li>
-     <li><label class="label_name">固定电话：</label><span class="add_name"><input name="固定电话" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">移动电话：</label><span class="add_name"><input name="移动电话" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">电子邮箱：</label><span class="add_name"><input name="电子邮箱" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li class="adderss"><label class="label_name">家庭住址：</label><span class="add_name"><input name="家庭住址" type="text"  class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
-     <label><input name="form-field-radio1" type="radio" checked="checked" class="ace"><span class="lbl">开启</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="form-field-radio1"type="radio" class="ace"><span class="lbl">关闭</span></label></span><div class="prompt r_f"></div></li>
+    <li hidden="hidden"><input name="catagory.id"/></li>
+     <li><label class="label_name">名&nbsp;&nbsp;&nbsp;&nbsp;称：</label><span class="add_name"><input value="" name="catagory.name" type="text"  class="text_add" /></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">mark1：</label><span class="add_name"><input name="catagory.mark1" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">mark2：</label><span class="add_name"><input name="catagory.mark2" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">mark3：</label><span class="add_name"><input name="catagory.mark3" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">图片：</label><span class="add_name"><select name="catagory.image" id="mycombobox" class="combobox form-control"><option>dd</option><option>ab</option><option>bb</option></select></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">层级名称：</label><span class="add_name"><input name="catagory.layerName" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">层级id：</label><span class="add_name"><input name="catagory.layerId" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">父节点id：</label><span class="add_name"><select name="catagory.parentid"><option>dd</option></select></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">排序：</label><span class="add_name"><input name="catagory.order" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">类别id：</label><span class="add_name"><input name="catagory.typeId" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
     </ul>
+    </form>
  </div>
 </body>
 </html>
 <script>
-jQuery(function($) {
-	
-	$('#searchBtn').bind('click', function() {
-		$.ajax({
-			type: "POST",
-			url: "<%=basePath %>/catagory/list",
-			dataType:"json",
-			data: {},
-			success: function(msg){
-				$(arr).each(function(i,data){
-					data.splice(0,0,"");
-					data.splice(data.length,0,"");
-				});
-				debugger;
-				$("#catagoryTable").DataTable({
-					data:msg,
-					columns:[
-						{data:'cUid'},
-						{data:'cName'},
-						{data:'cMark1'},
-						{data:'cMark2'},
-						{data:'cMark3'},
-						{data:'cImage'},
-						{data:'cLayername'},
-						{data:'cLayerid'},
-						{data:'cParentid'},
-						{data:'cIndex'},
-						{data:'cType'}
-					]
-				});
-// 				private String cUid;
-// 			    private String cName;
-// 			    private String cMark1;
-// 			    private String cMark2;
-// 			    private String cMark3;
-// 			    private String cImage;
-// 			    private String cLayername;
-// 			    private String cLayerid;
-// 			    private String cParentid;
-// 			    private Byte cIndex;
-// 			    private String cType;
-// 				$(arr).each(function(i,data){
-// 					var oneRow = new Array();
-// 					oneRow.push("<label><input type='checkbox' class='ace'><span class='lbl'></span></label>");
-// 					oneRow.push(data.cFilename);
-// 					oneRow.push(data.cFilesize);
-// 					oneRow.push(data.cTypename);
-// 					oneRow.push(data.cMark);
-// 					oneRow.push(data.cDate);
-// 					oneRow.push(data.cTime);
-// 					oneRow.push("<a title='删除' href='javascript:;'  onclick=\"member_del(this,\'1\')\" class='btn btn-xs btn-warning' ><i class='fa fa-trash  bigger-120'></i></a>");
-// 					tableData.push(oneRow);
-// 				});
-
-// 				var table = $("#uploadresListTable").dataTable({
-// 					"data":tableData,
-// 					destroy: true,
-// 					bAutoWidth: false,//是否自动宽度
-// 				});
-
-			},
-			error:function(){
-			
-			}
-		});
+function searchData() {
+	$.ajax({
+		type: "POST",
+		url: "<%=basePath %>/catagory/list",
+		dataType:"json",
+		data: {},
+		success: function(msg){
+			$(msg).each(function(i,data){
+				data.check="<label><input type='checkbox' class='ace'><span class='lbl'></span></label>";
+				data.dealWith="<a onClick=\"member_stop(this,'10001')\"  href=\"javascript:;\" title=\"停用\"  class=\"btn btn-xs btn-success\"><i class=\"icon-ok bigger-120\"></i></a> "
+		          +"<a title=\"编辑\" onclick=\"member_edit('510')\" href=\"javascript:;\"  class=\"btn btn-xs btn-info\" ><i class=\"icon-edit bigger-120\"></i></a> "
+		          +"<a title=\"删除\" href=\"javascript:;\"  onclick=\"member_del(this,'1')\" class=\"btn btn-xs btn-warning\" ><i class=\"icon-trash  bigger-120\"></i>";
+			});
+			$("#catagoryTable").DataTable({
+				data:msg,
+				columns:[
+					{data:'check'},
+					{data:'cUid'},
+					{data:'cName'},
+					{data:'cMark1'},
+					{data:'cMark2'},
+					{data:'cMark3'},
+					{data:'cImage'},
+					{data:'cLayername'},
+					{data:'cLayerid'},
+					{data:'cParentid'},
+					{data:'cIndex'},
+					{data:'cType'},
+					{data:'dealWith'}
+					
+				],
+				destroy: true,
+				bAutoWidth: false//是否自动宽度
+			});
+		},
+		error:function(){
+		
+		}
 	});
-
+}
+jQuery(function($) {
+	$('.combobox').combobox();
+	$('#searchBtn').bind('click',searchData);
+	searchData();
+	
+	
 				var oTable1 = $('#sample-table').dataTable( {
 				"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 		"bStateSave": true,//状态保存
@@ -250,42 +209,52 @@ jQuery(function($) {
 					return 'left';
 				}
 			});
-/*用户-添加*/
- $('#member_add').on('click', function(){
+function dialogEraser(){
+	
+}
+function dialogBackfill(){
+	
+}
+function dialogDis(){
+	 
     layer.open({
         type: 1,
-        title: '添加用户',
+        title: '添加类别',
 		maxmin: true, 
 		shadeClose: true, //点击遮罩关闭层
         area : ['800px' , ''],
-        content:$('#add_menber_style'),
+        content:$('#add_catagory_style'),
 		btn:['提交','取消'],
-		yes:function(index,layero){	
-		 var num=0;
-		 var str="";
-     $(".add_menber input[type$='text']").each(function(n){
-          if($(this).val()=="")
-          {
-               
-			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-                title: '提示框',				
-				icon:0,								
-          }); 
-		    num++;
-            return false;            
-          } 
-		 });
-		  if(num>0){  return false;}	 	
-          else{
-			  layer.alert('添加成功！',{
-               title: '提示框',				
-			icon:1,		
-			  });
-			   layer.close(index);	
-		  }		  		     				
+		yes:function(index,layero){
+			debugger;
+// 		 	var num=0;
+// 		 	var str="";
+// 			$(".add_menber input[type$='text']").each(function(n){
+//           		if($(this).val()=="")
+//           		{
+// 				   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+// 	                	title: '提示框',				
+// 						icon:0,								
+//           			}); 
+// 		    		num++;
+//             		return false;            
+//          		} 
+// 		 	});
+			
+// 		  if(num>0){  return false;}	 	
+//           else{
+// 			  layer.alert('添加成功！',{
+//                	title: '提示框',				
+// 				icon:1,		
+// 			  });
+// 			  layer.close(index);	
+// 		  }		
+		  
 		}
     });
-});
+}
+/*用户-添加*/
+ $('#member_add').on('click', dialogDis);
 /*用户-查看*/
 function member_show(title,url,id,w,h){
 	layer_show(title,url+'#?='+id,w,h);

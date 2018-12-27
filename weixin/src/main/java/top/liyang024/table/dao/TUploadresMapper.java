@@ -2,11 +2,9 @@ package top.liyang024.table.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import top.liyang024.table.domain.TUploadres;
 import top.liyang024.table.domain.TUploadresExample;
-@Component
+
 public interface TUploadresMapper {
     long countByExample(TUploadresExample example);
 
