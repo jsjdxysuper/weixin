@@ -76,7 +76,7 @@
      <!---->
      <div class="border clearfix">
        <span class="l_f">
-        <a href="javascript:void()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
+        <a href="javascript:void()" id="catagory_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
         <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
        </span>
        <span class="r_f">共：<b>2345</b>条</span>
@@ -113,16 +113,17 @@
   <form class="form-inline">
     <ul class=" page-content">
     <li hidden="hidden"><input name="catagory.id"/></li>
-     <li><label class="label_name">名&nbsp;&nbsp;&nbsp;&nbsp;称：</label><span class="add_name"><input value="" name="catagory.name" type="text"  class="text_add" /></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">mark1：</label><span class="add_name"><input name="catagory.mark1" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">mark2：</label><span class="add_name"><input name="catagory.mark2" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">mark3：</label><span class="add_name"><input name="catagory.mark3" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">图片：</label><span class="add_name"><select name="catagory.image" id="mycombobox" class="combobox form-control"><option>dd</option><option>ab</option><option>bb</option></select></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">层级名称：</label><span class="add_name"><input name="catagory.layerName" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">层级id：</label><span class="add_name"><input name="catagory.layerId" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">父节点id：</label><span class="add_name"><select name="catagory.parentid"><option>dd</option></select></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">排序：</label><span class="add_name"><input name="catagory.order" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">类别id：</label><span class="add_name"><input name="catagory.typeId" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+
+     <li><label class="label_name">名&nbsp;&nbsp;&nbsp;&nbsp;称：</label><span class="add_name"><input value="" name="catagory.cName" type="text"  class="text_add" /></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">mark1：</label><span class="add_name"><input name="catagory.cMark1" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">mark2：</label><span class="add_name"><input name="catagory.cMark2" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">mark3：</label><span class="add_name"><input name="catagory.cMark3" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">图片：</label><span class="add_name"><select name="catagory.cImage" id="imageCombobox" ><option>dd</option><option>ab</option><option>bb</option></select></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">层级名称：</label><span class="add_name"><input name="catagory.cLayername" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">层级id：</label><span class="add_name"><input name="catagory.cLayerId" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">父节点id：</label><span class="add_name"><select name="catagory.cParentid"><option>dd</option></select></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">排序：</label><span class="add_name"><input name="catagory.cIndex" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">类别id：</label><span class="add_name"><input name="catagory.cType" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
     </ul>
     </form>
  </div>
@@ -216,7 +217,43 @@ function dialogBackfill(){
 	
 }
 function dialogDis(){
-	 
+	//图片下拉列表
+	$.ajax({
+		type: "POST",
+		url: "<%=basePath %>/catagory/picFileList",
+		dataType:"json",
+		data: {},
+		success: function(msg){
+			debugger;
+			$("#imageCombobox").empty();
+			$(msg).each(function(i,data){
+				$("select[name='catagory.image']").append("<option value='"+data.cFilename+"'>"+data.cFilename+"</option>");
+			});
+			
+		},
+		error:function(){
+		
+		}
+	});
+	//父节点下拉列表
+	$.ajax({
+		type: "POST",
+		url: "<%=basePath %>/catagory/list",
+		dataType:"json",
+		data: {},
+		success: function(msg){
+			debugger;
+			$("select[name='catagory.parentid']").empty();
+			$("select[name='catagory.parentid']").append("<option value='null'>空</option>");
+			$(msg).each(function(i,data){
+				$("select[name='catagory.parentid']").append("<option value='"+data.cUid+"'>"+data.cUid+"-"+data.cName+"</option>");
+			});
+			
+		},
+		error:function(){
+		
+		}
+	});
     layer.open({
         type: 1,
         title: '添加类别',
@@ -227,6 +264,19 @@ function dialogDis(){
 		btn:['提交','取消'],
 		yes:function(index,layero){
 			debugger;
+	        private String cUid;
+	        private String cName;
+	        private String cMark1;
+	        private String cMark2;
+	        private String cMark3;
+	        private String cImage;
+	        private String cLayername;
+	        private String cLayerid;
+	        private String cParentid;
+	        private Byte cIndex;
+	        private String cType;
+	        var catagory = {};
+	        catagrory.cName = $("input[name=catagory.cName]");
 // 		 	var num=0;
 // 		 	var str="";
 // 			$(".add_menber input[type$='text']").each(function(n){
@@ -254,7 +304,7 @@ function dialogDis(){
     });
 }
 /*用户-添加*/
- $('#member_add').on('click', dialogDis);
+ $('#catagory_add').on('click', dialogDis);
 /*用户-查看*/
 function member_show(title,url,id,w,h){
 	layer_show(title,url+'#?='+id,w,h);
