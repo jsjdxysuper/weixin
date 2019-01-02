@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,8 +48,8 @@ public class CatagoryTreeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/catagory/catagoryParentList",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
-	public String getCatagoryParent(){
+	@RequestMapping(value="/catagory/add",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
+	public String getCatagoryParent(@RequestBody TCatagorytree catagory){
 		TUploadresExample example = new TUploadresExample();
 		example.createCriteria().andCFiletypeEqualTo("图片");
 		example.setOrderByClause("c_date desc");

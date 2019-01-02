@@ -120,7 +120,7 @@
      <li><label class="label_name">mark3：</label><span class="add_name"><input name="catagory.cMark3" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">图片：</label><span class="add_name"><select name="catagory.cImage" id="imageCombobox" ><option>dd</option><option>ab</option><option>bb</option></select></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">层级名称：</label><span class="add_name"><input name="catagory.cLayername" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">层级id：</label><span class="add_name"><input name="catagory.cLayerId" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">层级id：</label><span class="add_name"><input name="catagory.cLayerid" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">父节点id：</label><span class="add_name"><select name="catagory.cParentid"><option>dd</option></select></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">排序：</label><span class="add_name"><input name="catagory.cIndex" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">类别id：</label><span class="add_name"><input name="catagory.cType" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
@@ -224,10 +224,10 @@ function dialogDis(){
 		dataType:"json",
 		data: {},
 		success: function(msg){
-			debugger;
+			//debugger;
 			$("#imageCombobox").empty();
 			$(msg).each(function(i,data){
-				$("select[name='catagory.image']").append("<option value='"+data.cFilename+"'>"+data.cFilename+"</option>");
+				$("select[name='catagory.cImage']").append("<option value='"+data.cFilename+"'>"+data.cFilename+"</option>");
 			});
 			
 		},
@@ -242,11 +242,11 @@ function dialogDis(){
 		dataType:"json",
 		data: {},
 		success: function(msg){
-			debugger;
-			$("select[name='catagory.parentid']").empty();
-			$("select[name='catagory.parentid']").append("<option value='null'>空</option>");
+			//debugger;
+			$("select[name='catagory.cParentid']").empty();
+			$("select[name='catagory.cParentid']").append("<option value='null'>空</option>");
 			$(msg).each(function(i,data){
-				$("select[name='catagory.parentid']").append("<option value='"+data.cUid+"'>"+data.cUid+"-"+data.cName+"</option>");
+				$("select[name='catagory.cParentid']").append("<option value='"+data.cUid+"'>"+data.cUid+"-"+data.cName+"</option>");
 			});
 			
 		},
@@ -263,20 +263,33 @@ function dialogDis(){
         content:$('#add_catagory_style'),
 		btn:['提交','取消'],
 		yes:function(index,layero){
-			debugger;
-	        private String cUid;
-	        private String cName;
-	        private String cMark1;
-	        private String cMark2;
-	        private String cMark3;
-	        private String cImage;
-	        private String cLayername;
-	        private String cLayerid;
-	        private String cParentid;
-	        private Byte cIndex;
-	        private String cType;
+			
+	        
 	        var catagory = {};
-	        catagrory.cName = $("input[name=catagory.cName]");
+	        catagory.cName = $("input[name='catagory.cName']").val();
+	        catagory.cMark1 = $("input[name='catagory.cMark1']").val();
+	        catagory.cMark2 = $("input[name='catagory.cMark2']").val();
+	        catagory.cMark3 = $("input[name='catagory.cMark3']").val();
+	        catagory.cImage = $("select[name='catagory.cImage']").val();
+	        catagory.cLayername = $("input[name='catagory.cLayername']").val();
+	        catagory.cLayerid = $("input[name='catagory.cLayerid']").val();
+	        catagory.cIndex = $("input[name='catagory.cIndex']").val();
+	        catagory.cType = $("input[name='catagory.cType']").val();
+	        catagory.cParentid = $("select[name='catagory.cParentid']").val();
+	        debugger;
+	        
+	        $.ajax({
+	    		type: "POST",
+	    		url: "<%=basePath %>/catagory/add",
+	    		dataType:"json",
+	    		data: {'catagory':catagory},
+	    		success: function(msg){
+	    			//debugger;
+	    		},
+	    		error:function(){
+	    		
+	    		}
+	    	});
 // 		 	var num=0;
 // 		 	var str="";
 // 			$(".add_menber input[type$='text']").each(function(n){
