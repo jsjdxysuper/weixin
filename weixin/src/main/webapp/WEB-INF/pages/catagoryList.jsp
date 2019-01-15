@@ -87,17 +87,17 @@
 		<thead>
 		 <tr>
 				<th width="25"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-				<th width="80">ID</th>
+				<th width="100">ID</th>
 				<th width="100">名称</th>
-				<th width="80">mark1</th>
+				<th width="110">mark1</th>
 				<th width="120">mark2</th>
 				<th width="150">mark3</th>
-				<th width="">图片</th>
+				<th width="300">图片</th>
 				<th width="180">层级名称</th>
                 <th width="100">层级id</th>
 				<th width="70">父节点id</th>                
-				<th width="250">排序</th>
-				<th width="250">类别id</th>
+				<th width="50">排序</th>
+				<th width="100">类别id</th>
 				<th width="250">操作</th>
 			</tr>
 		</thead>
@@ -130,6 +130,7 @@
 </body>
 </html>
 <script>
+var dtTable = null;
 function searchData() {
 	$.ajax({
 		type: "POST",
@@ -139,26 +140,25 @@ function searchData() {
 		success: function(msg){
 			$(msg).each(function(i,data){
 				data.check="<label><input type='checkbox' class='ace'><span class='lbl'></span></label>";
-				data.dealWith="<a onClick=\"member_stop(this,'10001')\"  href=\"javascript:;\" title=\"停用\"  class=\"btn btn-xs btn-success\"><i class=\"icon-ok bigger-120\"></i></a> "
-		          +"<a title=\"编辑\" onclick=\"member_edit('510')\" href=\"javascript:;\"  class=\"btn btn-xs btn-info\" ><i class=\"icon-edit bigger-120\"></i></a> "
-		          +"<a title=\"删除\" href=\"javascript:;\"  onclick=\"member_del(this,'1')\" class=\"btn btn-xs btn-warning\" ><i class=\"icon-trash  bigger-120\"></i>";
+				data.dealWith="<a title=\"编辑\" onclick=\"member_edit(this)\" href=\"javascript:;\"  class=\"btn btn-xs btn-info\" ><i class=\"icon-edit bigger-120\"></i></a> "
+		          +"<a title=\"删除\" href=\"javascript:;\"  onclick=\"member_del(this,"+data.cUid+")\" class=\"btn btn-xs btn-warning\" ><i class=\"icon-trash  bigger-120\"></i>";
 			});
-			$("#catagoryTable").DataTable({
+			dtTable = $("#catagoryTable").DataTable({
 				data:msg,
 				columns:[
-					{data:'check'},
-					{data:'cUid'},
-					{data:'cName'},
-					{data:'cMark1'},
-					{data:'cMark2'},
-					{data:'cMark3'},
-					{data:'cImage'},
-					{data:'cLayername'},
-					{data:'cLayerid'},
-					{data:'cParentid'},
-					{data:'cIndex'},
-					{data:'cType'},
-					{data:'dealWith'}
+					{data:'check',name:'check'},
+					{data:'cUid',name:'cUid'},
+					{data:'cName',name:'cName'},
+					{data:'cMark1',name:'cMark1'},
+					{data:'cMark2',name:'cMark2'},
+					{data:'cMark3',name:'cMark3'},
+					{data:'cImage',name:'cImage'},
+					{data:'cLayername',name:'cLayername'},
+					{data:'cLayerid',name:'cLayerid'},
+					{data:'cParentid',name:'cParentid'},
+					{data:'cIndex',name:'cIndex'},
+					{data:'cType',name:'cType'},
+					{data:'dealWith',name:'dealWith'}
 					
 				],
 				destroy: true,
@@ -211,11 +211,61 @@ jQuery(function($) {
 				}
 			});
 function dialogEraser(){
-	
+	$("input[name='catagory.cName']").val('');
+    $("input[name='catagory.cMark1']").val('');
+    $("input[name='catagory.cMark2']").val('');
+    $("input[name='catagory.cMark3']").val('');
+    var options = $("select[name='catagory.cImage']").find("option");
+    options.first().attr("selected", true);
+    $("input[name='catagory.cLayername']").val('');
+    $("input[name='catagory.cLayerid']").val('');
+    $("input[name='catagory.cIndex']").val('');
+    $("input[name='catagory.cType']").val('');
+    options = $("select[name='catagory.cParentid']").find("option");
+    options.first().attr("selected", true);
 }
-function dialogBackfill(){
-	
+function dialogBackfill(editBtn){
+	var oneRowData = dtTable.row($(editBtn).parents('tr')).data();
 }
+
+/*用户-编辑*/
+function member_edit(editBtn){
+	dialogBackfill(editBtn);
+	  layer.open({
+        type: 1,
+        title: '修改用户信息',
+		maxmin: true, 
+		shadeClose:false, //点击遮罩关闭层
+        area : ['800px' , ''],
+        content:$('#add_menber_style'),
+		btn:['提交','取消'],
+		yes:function(index,layero){	
+		 var num=0;
+		 var str="";
+     $(".add_menber input[type$='text']").each(function(n){
+          if($(this).val()=="")
+          {
+               
+			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+                title: '提示框',				
+				icon:0,								
+          }); 
+		    num++;
+            return false;            
+          } 
+		 });
+		  if(num>0){  return false;}	 	
+          else{
+			  layer.alert('添加成功！',{
+               title: '提示框',				
+			icon:1,		
+			  });
+			   layer.close(index);	
+		  }		  		     				
+		}
+    });
+}
+
 function dialogDis(){
 	//图片下拉列表
 	$.ajax({
@@ -254,6 +304,7 @@ function dialogDis(){
 		
 		}
 	});
+	dialogEraser();
     layer.open({
         type: 1,
         title: '添加类别',
@@ -262,7 +313,7 @@ function dialogDis(){
         area : ['800px' , ''],
         content:$('#add_catagory_style'),
 		btn:['提交','取消'],
-		yes:function(index,layero){
+		yes:function(dialogIndex,layero){
 			
 	        
 	        var catagory = {};
@@ -282,9 +333,13 @@ function dialogDis(){
 	    		type: "POST",
 	    		url: "<%=basePath %>/catagory/add",
 	    		dataType:"json",
-	    		data: {'catagory':catagory},
+	    		data: catagory,
 	    		success: function(msg){
-	    			//debugger;
+    				  layer.alert(msg.content,{
+    		               	title: '提示框',				
+    						icon:1,		
+    					  });
+    				  layer.close(dialogIndex);
 	    		},
 	    		error:function(){
 	    		
@@ -341,48 +396,31 @@ function member_start(obj,id){
 		layer.msg('已启用!',{icon: 6,time:1000});
 	});
 }
-/*用户-编辑*/
-function member_edit(id){
-	  layer.open({
-        type: 1,
-        title: '修改用户信息',
-		maxmin: true, 
-		shadeClose:false, //点击遮罩关闭层
-        area : ['800px' , ''],
-        content:$('#add_menber_style'),
-		btn:['提交','取消'],
-		yes:function(index,layero){	
-		 var num=0;
-		 var str="";
-     $(".add_menber input[type$='text']").each(function(n){
-          if($(this).val()=="")
-          {
-               
-			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-                title: '提示框',				
-				icon:0,								
-          }); 
-		    num++;
-            return false;            
-          } 
-		 });
-		  if(num>0){  return false;}	 	
-          else{
-			  layer.alert('添加成功！',{
-               title: '提示框',				
-			icon:1,		
-			  });
-			   layer.close(index);	
-		  }		  		     				
-		}
-    });
-}
+
 /*用户-删除*/
 function member_del(obj,id){
+	debugger;
 	layer.confirm('确认要删除吗？',function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
+		
+		$.ajax({
+			type: "POST",
+			url: "<%=basePath %>/catagory/del",
+			dataType:"json",
+			data: {catagoryId:id},
+			success: function(msg){
+				if(msg.code==1){
+				  	$(obj).parents("tr").remove();
+				}
+				layer.msg(msg.msg,{icon:1,time:1000});
+			},
+			error:function(){
+			
+			}
+		});
+		
 	});
+	
+	
 }
 laydate({
     elem: '#start',

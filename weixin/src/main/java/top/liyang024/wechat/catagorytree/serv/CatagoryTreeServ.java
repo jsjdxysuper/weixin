@@ -20,4 +20,22 @@ public class CatagoryTreeServ {
 		List<TCatagorytree> catagoryList = catagorytreeMapper.selectByExample(example);
 		return catagoryList;
 	}
+	
+	public boolean saveCatagory(TCatagorytree catagorytree) {
+		long timeMiliSec = System.currentTimeMillis();
+		catagorytree.setcUid(timeMiliSec+"");
+		int count = catagorytreeMapper.insert(catagorytree);
+		if(count>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean delCatagory(String catagoryId) {
+		int count = catagorytreeMapper.deleteByPrimaryKey(catagoryId);
+		if(count>0)
+			return true;
+		else
+			return false;
+	}
 }
