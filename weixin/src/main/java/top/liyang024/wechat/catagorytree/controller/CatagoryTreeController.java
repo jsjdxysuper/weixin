@@ -68,6 +68,23 @@ public class CatagoryTreeController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/catagory/update",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
+	public String catagoryUpdate(@ModelAttribute TCatagorytree catagory){
+		boolean ret = catagoryTreeServ.updateCatagory(catagory);
+		RetJsonMsg msg = new RetJsonMsg();
+		if(ret) {
+			msg.setCode(1);
+			msg.setContent("修改树形资源成功");
+			msg.setMsg("修改树形资源成功!"+catagory.getcUid());
+		}else {
+			msg.setCode(2);
+			msg.setContent("修改树形资源失败");
+			msg.setMsg("修改树形资源失败!");
+		}
+		return JSONObject.fromObject(msg).toString();
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="/catagory/del",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
 	public String catagoryDel(String catagoryId){
 		boolean ret = catagoryTreeServ.delCatagory(catagoryId);

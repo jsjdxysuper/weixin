@@ -31,6 +31,14 @@ public class CatagoryTreeServ {
 			return false;
 	}
 	
+	public boolean updateCatagory(TCatagorytree catagorytree) {
+		int count = catagorytreeMapper.updateByPrimaryKey(catagorytree);
+		if(count>0)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean delCatagory(String catagoryId) {
 		int count = catagorytreeMapper.deleteByPrimaryKey(catagoryId);
 		if(count>0)

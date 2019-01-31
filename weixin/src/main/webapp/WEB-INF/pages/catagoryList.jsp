@@ -225,49 +225,144 @@ function dialogEraser(){
     options.first().attr("selected", true);
 }
 function dialogBackfill(editBtn){
-	var oneRowData = dtTable.row($(editBtn).parents('tr')).data();
-}
+	
+	fill2Select().then(function(){
+		var oneRowData = dtTable.row($(editBtn).parents('tr')).data();
+		
+		$("input[name='catagory.cName']").val(oneRowData.cName);
+	    $("input[name='catagory.cMark1']").val(oneRowData.cMark1);
+	    $("input[name='catagory.cMark2']").val(oneRowData.cMark2);
+	    $("input[name='catagory.cMark3']").val(oneRowData.cMark3);
+	    
+	    $("input[name='catagory.cLayername']").val(oneRowData.cLayername);
+	    $("input[name='catagory.cLayerid']").val(oneRowData.cLayerid);
+	    $("input[name='catagory.cIndex']").val(oneRowData.cIndex);
+	    $("input[name='catagory.cType']").val(oneRowData.cType);
+	    
+//	     $("select[name='catagory.cParentid']").find("option[value='"+oneRowData.cParentid+"']").prop("selected", true);
+//	     $("select[name='catagory.cImage']").find("option[value='"+oneRowData.cImage+"']").prop("selected", true);
+	    $("select[name='catagory.cParentid']").val(oneRowData.cParentid);
+	    $("select[name='catagory.cImage']").val(oneRowData.cImage);
+	    var options = $("select[name='catagory.cParentid']").find("option");
+	    console.log(options.length);
+//	     options
+//	     options.first().attr("selected", true);
+	    var options1 = $("select[name='catagory.cImage']").find("option");
+	    console.log(options1.length);
+//	     options.first().attr("selected", true);
+	});
 
+
+}
+function fill2Select(){
+	dialogPicListCtr();
+	dialogParentListCtr();
+}
 /*用户-编辑*/
 function member_edit(editBtn){
 	dialogBackfill(editBtn);
-	  layer.open({
+	layer.open({
         type: 1,
-        title: '修改用户信息',
+        title: '修改类别',
 		maxmin: true, 
-		shadeClose:false, //点击遮罩关闭层
+		shadeClose: true, //点击遮罩关闭层
         area : ['800px' , ''],
-        content:$('#add_menber_style'),
-		btn:['提交','取消'],
-		yes:function(index,layero){	
-		 var num=0;
-		 var str="";
-     $(".add_menber input[type$='text']").each(function(n){
-          if($(this).val()=="")
-          {
-               
-			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-                title: '提示框',				
-				icon:0,								
-          }); 
-		    num++;
-            return false;            
-          } 
-		 });
-		  if(num>0){  return false;}	 	
-          else{
-			  layer.alert('添加成功！',{
-               title: '提示框',				
-			icon:1,		
-			  });
-			   layer.close(index);	
-		  }		  		     				
+        content:$('#add_catagory_style'),
+		btn:['修改','取消'],
+		yes:function(dialogIndex,layero){
+			
+	        
+	        var catagory = {};
+	        catagory.cName = $("input[name='catagory.cName']").val();
+	        catagory.cMark1 = $("input[name='catagory.cMark1']").val();
+	        catagory.cMark2 = $("input[name='catagory.cMark2']").val();
+	        catagory.cMark3 = $("input[name='catagory.cMark3']").val();
+	        catagory.cImage = $("select[name='catagory.cImage']").val();
+	        catagory.cLayername = $("input[name='catagory.cLayername']").val();
+	        catagory.cLayerid = $("input[name='catagory.cLayerid']").val();
+	        catagory.cIndex = $("input[name='catagory.cIndex']").val();
+	        catagory.cType = $("input[name='catagory.cType']").val();
+	        catagory.cParentid = $("select[name='catagory.cParentid']").val();
+	        debugger;
+	        
+	        $.ajax({
+	    		type: "POST",
+	    		url: "<%=basePath %>/catagory/add",
+	    		dataType:"json",
+	    		data: catagory,
+	    		success: function(msg){
+    				  layer.alert(msg.content,{
+    		               	title: '提示框',				
+    						icon:1,		
+    					  });
+    				  layer.close(dialogIndex);
+	    		},
+	    		error:function(){
+	    		
+	    		}
+	    	});
+// 		 	var num=0;
+// 		 	var str="";
+// 			$(".add_menber input[type$='text']").each(function(n){
+//           		if($(this).val()=="")
+//           		{
+// 				   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+// 	                	title: '提示框',				
+// 						icon:0,								
+//           			}); 
+// 		    		num++;
+//             		return false;            
+//          		} 
+// 		 	});
+			
+// 		  if(num>0){  return false;}	 	
+//           else{
+// 			  layer.alert('添加成功！',{
+//                	title: '提示框',				
+// 				icon:1,		
+// 			  });
+// 			  layer.close(index);	
+// 		  }		
+		  
 		}
     });
+// 	fill2Select(editBtn);
+// 	  layer.open({
+//         type: 1,
+//         title: '修改用户信息',
+// 		maxmin: true, 
+// 		shadeClose:false, //点击遮罩关闭层
+//         area : ['800px' , ''],
+//         content:$('#add_menber_style'),
+// 		btn:['提交','取消'],
+// 		yes:function(index,layero){	
+// 		 var num=0;
+// 		 var str="";
+//      $(".add_menber input[type$='text']").each(function(n){
+//           if($(this).val()=="")
+//           {
+               
+// 			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+//                 title: '提示框',				
+// 				icon:0,								
+//           }); 
+// 		    num++;
+//             return false;            
+//           } 
+// 		 });
+// 		  if(num>0){  return false;}	 	
+//           else{
+// 			  layer.alert('添加成功！',{
+//                title: '提示框',				
+// 			icon:1,		
+// 			  });
+// 			   layer.close(index);	
+// 		  }		  		     				
+// 		}
+//     });
 }
-
-function dialogDis(){
-	//图片下拉列表
+//图片下拉列表
+function dialogPicListCtr(){
 	$.ajax({
 		type: "POST",
 		url: "<%=basePath %>/catagory/picFileList",
@@ -276,6 +371,7 @@ function dialogDis(){
 		success: function(msg){
 			//debugger;
 			$("#imageCombobox").empty();
+			$("select[name='catagory.cImage']").append("<option value='null'>空</option>");
 			$(msg).each(function(i,data){
 				$("select[name='catagory.cImage']").append("<option value='"+data.cFilename+"'>"+data.cFilename+"</option>");
 			});
@@ -285,7 +381,10 @@ function dialogDis(){
 		
 		}
 	});
-	//父节点下拉列表
+}
+
+//父节点下拉列表
+function dialogParentListCtr(){
 	$.ajax({
 		type: "POST",
 		url: "<%=basePath %>/catagory/list",
@@ -304,6 +403,12 @@ function dialogDis(){
 		
 		}
 	});
+}
+
+function dialogDis(){
+	
+	dialogPicListCtr();
+	dialogParentListCtr();
 	dialogEraser();
     layer.open({
         type: 1,
@@ -312,7 +417,7 @@ function dialogDis(){
 		shadeClose: true, //点击遮罩关闭层
         area : ['800px' , ''],
         content:$('#add_catagory_style'),
-		btn:['提交','取消'],
+		btn:['添加','取消'],
 		yes:function(dialogIndex,layero){
 			
 	        
