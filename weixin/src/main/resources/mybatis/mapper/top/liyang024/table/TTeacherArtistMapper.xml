@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.liyang024.table.dao.TTeacherArtistMapper">
+  <resultMap id="BaseResultMap" type="top.liyang024.table.domain.TTeacherArtist">
+    <id column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_parent_id" jdbcType="INTEGER" property="cParentId" />
+    <result column="c_title" jdbcType="VARCHAR" property="cTitle" />
+    <result column="c_subtitle" jdbcType="VARCHAR" property="cSubtitle" />
+    <result column="c_headportrait" jdbcType="VARCHAR" property="cHeadportrait" />
+    <result column="c_index" jdbcType="REAL" property="cIndex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    c_id, c_parent_id, c_title, c_subtitle, c_headportrait, c_index
+  </sql>
+  <select id="selectByExample" parameterType="top.liyang024.table.domain.TTeacherArtistExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_teacher_artist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_teacher_artist
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_teacher_artist
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="top.liyang024.table.domain.TTeacherArtistExample">
+    delete from t_teacher_artist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="top.liyang024.table.domain.TTeacherArtist">
+    insert into t_teacher_artist (c_id, c_parent_id, c_title, 
+      c_subtitle, c_headportrait, c_index
+      )
+    values (#{cId,jdbcType=INTEGER}, #{cParentId,jdbcType=INTEGER}, #{cTitle,jdbcType=VARCHAR}, 
+      #{cSubtitle,jdbcType=VARCHAR}, #{cHeadportrait,jdbcType=VARCHAR}, #{cIndex,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.liyang024.table.domain.TTeacherArtist">
+    insert into t_teacher_artist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cParentId != null">
+        c_parent_id,
+      </if>
+      <if test="cTitle != null">
+        c_title,
+      </if>
+      <if test="cSubtitle != null">
+        c_subtitle,
+      </if>
+      <if test="cHeadportrait != null">
+        c_headportrait,
+      </if>
+      <if test="cIndex != null">
+        c_index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cParentId != null">
+        #{cParentId,jdbcType=INTEGER},
+      </if>
+      <if test="cTitle != null">
+        #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cSubtitle != null">
+        #{cSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cHeadportrait != null">
+        #{cHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="cIndex != null">
+        #{cIndex,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="top.liyang024.table.domain.TTeacherArtistExample" resultType="java.lang.Long">
+    select count(*) from t_teacher_artist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_teacher_artist
+    <set>
+      <if test="record.cId != null">
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cParentId != null">
+        c_parent_id = #{record.cParentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cTitle != null">
+        c_title = #{record.cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cSubtitle != null">
+        c_subtitle = #{record.cSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cHeadportrait != null">
+        c_headportrait = #{record.cHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cIndex != null">
+        c_index = #{record.cIndex,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_teacher_artist
+    set c_id = #{record.cId,jdbcType=INTEGER},
+      c_parent_id = #{record.cParentId,jdbcType=INTEGER},
+      c_title = #{record.cTitle,jdbcType=VARCHAR},
+      c_subtitle = #{record.cSubtitle,jdbcType=VARCHAR},
+      c_headportrait = #{record.cHeadportrait,jdbcType=VARCHAR},
+      c_index = #{record.cIndex,jdbcType=REAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="top.liyang024.table.domain.TTeacherArtist">
+    update t_teacher_artist
+    <set>
+      <if test="cParentId != null">
+        c_parent_id = #{cParentId,jdbcType=INTEGER},
+      </if>
+      <if test="cTitle != null">
+        c_title = #{cTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cSubtitle != null">
+        c_subtitle = #{cSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cHeadportrait != null">
+        c_headportrait = #{cHeadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="cIndex != null">
+        c_index = #{cIndex,jdbcType=REAL},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.liyang024.table.domain.TTeacherArtist">
+    update t_teacher_artist
+    set c_parent_id = #{cParentId,jdbcType=INTEGER},
+      c_title = #{cTitle,jdbcType=VARCHAR},
+      c_subtitle = #{cSubtitle,jdbcType=VARCHAR},
+      c_headportrait = #{cHeadportrait,jdbcType=VARCHAR},
+      c_index = #{cIndex,jdbcType=REAL}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>
