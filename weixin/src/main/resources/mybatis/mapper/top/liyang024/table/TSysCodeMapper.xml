@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.liyang024.table.dao.TSysCodeMapper">
   <resultMap id="BaseResultMap" type="top.liyang024.table.domain.TSysCode">
-    <id column="c_typeid" jdbcType="VARCHAR" property="cTypeid" />
+    <id column="c_index" jdbcType="TINYINT" property="cIndex" />
     <id column="c_id" jdbcType="VARCHAR" property="cId" />
+    <id column="c_typeid" jdbcType="VARCHAR" property="cTypeid" />
     <result column="c_typename" jdbcType="VARCHAR" property="cTypename" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
     <result column="c_val" jdbcType="VARCHAR" property="cVal" />
     <result column="c_mark" jdbcType="VARCHAR" property="cMark" />
-    <result column="c_index" jdbcType="TINYINT" property="cIndex" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    c_typeid, c_id, c_typename, c_name, c_val, c_mark, c_index
+    c_index, c_id, c_typeid, c_typename, c_name, c_val, c_mark
   </sql>
   <select id="selectByExample" parameterType="top.liyang024.table.domain.TSysCodeExample" resultMap="BaseResultMap">
     select
@@ -89,13 +89,15 @@
     select 
     <include refid="Base_Column_List" />
     from t_sys_code
-    where c_typeid = #{cTypeid,jdbcType=VARCHAR}
+    where c_index = #{cIndex,jdbcType=TINYINT}
       and c_id = #{cId,jdbcType=VARCHAR}
+      and c_typeid = #{cTypeid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="top.liyang024.table.domain.TSysCodeKey">
     delete from t_sys_code
-    where c_typeid = #{cTypeid,jdbcType=VARCHAR}
+    where c_index = #{cIndex,jdbcType=TINYINT}
       and c_id = #{cId,jdbcType=VARCHAR}
+      and c_typeid = #{cTypeid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="top.liyang024.table.domain.TSysCodeExample">
     delete from t_sys_code
@@ -104,21 +106,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="top.liyang024.table.domain.TSysCode">
-    insert into t_sys_code (c_typeid, c_id, c_typename, 
-      c_name, c_val, c_mark, 
-      c_index)
-    values (#{cTypeid,jdbcType=VARCHAR}, #{cId,jdbcType=VARCHAR}, #{cTypename,jdbcType=VARCHAR}, 
-      #{cName,jdbcType=VARCHAR}, #{cVal,jdbcType=VARCHAR}, #{cMark,jdbcType=VARCHAR}, 
-      #{cIndex,jdbcType=TINYINT})
+    insert into t_sys_code (c_index, c_id, c_typeid, 
+      c_typename, c_name, c_val, 
+      c_mark)
+    values (#{cIndex,jdbcType=TINYINT}, #{cId,jdbcType=VARCHAR}, #{cTypeid,jdbcType=VARCHAR}, 
+      #{cTypename,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{cVal,jdbcType=VARCHAR}, 
+      #{cMark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="top.liyang024.table.domain.TSysCode">
     insert into t_sys_code
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cTypeid != null">
-        c_typeid,
+      <if test="cIndex != null">
+        c_index,
       </if>
       <if test="cId != null">
         c_id,
+      </if>
+      <if test="cTypeid != null">
+        c_typeid,
       </if>
       <if test="cTypename != null">
         c_typename,
@@ -132,16 +137,16 @@
       <if test="cMark != null">
         c_mark,
       </if>
-      <if test="cIndex != null">
-        c_index,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cTypeid != null">
-        #{cTypeid,jdbcType=VARCHAR},
+      <if test="cIndex != null">
+        #{cIndex,jdbcType=TINYINT},
       </if>
       <if test="cId != null">
         #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="cTypeid != null">
+        #{cTypeid,jdbcType=VARCHAR},
       </if>
       <if test="cTypename != null">
         #{cTypename,jdbcType=VARCHAR},
@@ -155,9 +160,6 @@
       <if test="cMark != null">
         #{cMark,jdbcType=VARCHAR},
       </if>
-      <if test="cIndex != null">
-        #{cIndex,jdbcType=TINYINT},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="top.liyang024.table.domain.TSysCodeExample" resultType="java.lang.Long">
@@ -169,11 +171,14 @@
   <update id="updateByExampleSelective" parameterType="map">
     update t_sys_code
     <set>
-      <if test="record.cTypeid != null">
-        c_typeid = #{record.cTypeid,jdbcType=VARCHAR},
+      <if test="record.cIndex != null">
+        c_index = #{record.cIndex,jdbcType=TINYINT},
       </if>
       <if test="record.cId != null">
         c_id = #{record.cId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cTypeid != null">
+        c_typeid = #{record.cTypeid,jdbcType=VARCHAR},
       </if>
       <if test="record.cTypename != null">
         c_typename = #{record.cTypename,jdbcType=VARCHAR},
@@ -187,9 +192,6 @@
       <if test="record.cMark != null">
         c_mark = #{record.cMark,jdbcType=VARCHAR},
       </if>
-      <if test="record.cIndex != null">
-        c_index = #{record.cIndex,jdbcType=TINYINT},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -197,13 +199,13 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update t_sys_code
-    set c_typeid = #{record.cTypeid,jdbcType=VARCHAR},
+    set c_index = #{record.cIndex,jdbcType=TINYINT},
       c_id = #{record.cId,jdbcType=VARCHAR},
+      c_typeid = #{record.cTypeid,jdbcType=VARCHAR},
       c_typename = #{record.cTypename,jdbcType=VARCHAR},
       c_name = #{record.cName,jdbcType=VARCHAR},
       c_val = #{record.cVal,jdbcType=VARCHAR},
-      c_mark = #{record.cMark,jdbcType=VARCHAR},
-      c_index = #{record.cIndex,jdbcType=TINYINT}
+      c_mark = #{record.cMark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -223,21 +225,19 @@
       <if test="cMark != null">
         c_mark = #{cMark,jdbcType=VARCHAR},
       </if>
-      <if test="cIndex != null">
-        c_index = #{cIndex,jdbcType=TINYINT},
-      </if>
     </set>
-    where c_typeid = #{cTypeid,jdbcType=VARCHAR}
+    where c_index = #{cIndex,jdbcType=TINYINT}
       and c_id = #{cId,jdbcType=VARCHAR}
+      and c_typeid = #{cTypeid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="top.liyang024.table.domain.TSysCode">
     update t_sys_code
     set c_typename = #{cTypename,jdbcType=VARCHAR},
       c_name = #{cName,jdbcType=VARCHAR},
       c_val = #{cVal,jdbcType=VARCHAR},
-      c_mark = #{cMark,jdbcType=VARCHAR},
-      c_index = #{cIndex,jdbcType=TINYINT}
-    where c_typeid = #{cTypeid,jdbcType=VARCHAR}
+      c_mark = #{cMark,jdbcType=VARCHAR}
+    where c_index = #{cIndex,jdbcType=TINYINT}
       and c_id = #{cId,jdbcType=VARCHAR}
+      and c_typeid = #{cTypeid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -104,73 +104,63 @@ public class TSysCodeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andCTypeidIsNull() {
-            addCriterion("c_typeid is null");
+        public Criteria andCIndexIsNull() {
+            addCriterion("c_index is null");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidIsNotNull() {
-            addCriterion("c_typeid is not null");
+        public Criteria andCIndexIsNotNull() {
+            addCriterion("c_index is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidEqualTo(String value) {
-            addCriterion("c_typeid =", value, "cTypeid");
+        public Criteria andCIndexEqualTo(Byte value) {
+            addCriterion("c_index =", value, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidNotEqualTo(String value) {
-            addCriterion("c_typeid <>", value, "cTypeid");
+        public Criteria andCIndexNotEqualTo(Byte value) {
+            addCriterion("c_index <>", value, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidGreaterThan(String value) {
-            addCriterion("c_typeid >", value, "cTypeid");
+        public Criteria andCIndexGreaterThan(Byte value) {
+            addCriterion("c_index >", value, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidGreaterThanOrEqualTo(String value) {
-            addCriterion("c_typeid >=", value, "cTypeid");
+        public Criteria andCIndexGreaterThanOrEqualTo(Byte value) {
+            addCriterion("c_index >=", value, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidLessThan(String value) {
-            addCriterion("c_typeid <", value, "cTypeid");
+        public Criteria andCIndexLessThan(Byte value) {
+            addCriterion("c_index <", value, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidLessThanOrEqualTo(String value) {
-            addCriterion("c_typeid <=", value, "cTypeid");
+        public Criteria andCIndexLessThanOrEqualTo(Byte value) {
+            addCriterion("c_index <=", value, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidLike(String value) {
-            addCriterion("c_typeid like", value, "cTypeid");
+        public Criteria andCIndexIn(List<Byte> values) {
+            addCriterion("c_index in", values, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidNotLike(String value) {
-            addCriterion("c_typeid not like", value, "cTypeid");
+        public Criteria andCIndexNotIn(List<Byte> values) {
+            addCriterion("c_index not in", values, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidIn(List<String> values) {
-            addCriterion("c_typeid in", values, "cTypeid");
+        public Criteria andCIndexBetween(Byte value1, Byte value2) {
+            addCriterion("c_index between", value1, value2, "cIndex");
             return (Criteria) this;
         }
 
-        public Criteria andCTypeidNotIn(List<String> values) {
-            addCriterion("c_typeid not in", values, "cTypeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andCTypeidBetween(String value1, String value2) {
-            addCriterion("c_typeid between", value1, value2, "cTypeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andCTypeidNotBetween(String value1, String value2) {
-            addCriterion("c_typeid not between", value1, value2, "cTypeid");
+        public Criteria andCIndexNotBetween(Byte value1, Byte value2) {
+            addCriterion("c_index not between", value1, value2, "cIndex");
             return (Criteria) this;
         }
 
@@ -241,6 +231,76 @@ public class TSysCodeExample {
 
         public Criteria andCIdNotBetween(String value1, String value2) {
             addCriterion("c_id not between", value1, value2, "cId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidIsNull() {
+            addCriterion("c_typeid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidIsNotNull() {
+            addCriterion("c_typeid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidEqualTo(String value) {
+            addCriterion("c_typeid =", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidNotEqualTo(String value) {
+            addCriterion("c_typeid <>", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidGreaterThan(String value) {
+            addCriterion("c_typeid >", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidGreaterThanOrEqualTo(String value) {
+            addCriterion("c_typeid >=", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidLessThan(String value) {
+            addCriterion("c_typeid <", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidLessThanOrEqualTo(String value) {
+            addCriterion("c_typeid <=", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidLike(String value) {
+            addCriterion("c_typeid like", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidNotLike(String value) {
+            addCriterion("c_typeid not like", value, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidIn(List<String> values) {
+            addCriterion("c_typeid in", values, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidNotIn(List<String> values) {
+            addCriterion("c_typeid not in", values, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidBetween(String value1, String value2) {
+            addCriterion("c_typeid between", value1, value2, "cTypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCTypeidNotBetween(String value1, String value2) {
+            addCriterion("c_typeid not between", value1, value2, "cTypeid");
             return (Criteria) this;
         }
 
@@ -521,66 +581,6 @@ public class TSysCodeExample {
 
         public Criteria andCMarkNotBetween(String value1, String value2) {
             addCriterion("c_mark not between", value1, value2, "cMark");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexIsNull() {
-            addCriterion("c_index is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexIsNotNull() {
-            addCriterion("c_index is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexEqualTo(Byte value) {
-            addCriterion("c_index =", value, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexNotEqualTo(Byte value) {
-            addCriterion("c_index <>", value, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexGreaterThan(Byte value) {
-            addCriterion("c_index >", value, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexGreaterThanOrEqualTo(Byte value) {
-            addCriterion("c_index >=", value, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexLessThan(Byte value) {
-            addCriterion("c_index <", value, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexLessThanOrEqualTo(Byte value) {
-            addCriterion("c_index <=", value, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexIn(List<Byte> values) {
-            addCriterion("c_index in", values, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexNotIn(List<Byte> values) {
-            addCriterion("c_index not in", values, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexBetween(Byte value1, Byte value2) {
-            addCriterion("c_index between", value1, value2, "cIndex");
-            return (Criteria) this;
-        }
-
-        public Criteria andCIndexNotBetween(Byte value1, Byte value2) {
-            addCriterion("c_index not between", value1, value2, "cIndex");
             return (Criteria) this;
         }
     }

@@ -9,8 +9,6 @@ public class TSysCode extends TSysCodeKey {
 
     private String cMark;
 
-    private Byte cIndex;
-
     public String getcTypename() {
         return cTypename;
     }
@@ -41,13 +39,5 @@ public class TSysCode extends TSysCodeKey {
 
     public void setcMark(String cMark) {
         this.cMark = cMark == null ? null : cMark.trim();
-    }
-
-    public Byte getcIndex() {
-        return cIndex;
-    }
-
-    public void setcIndex(Byte cIndex) {
-        this.cIndex = cIndex;
     }
 }

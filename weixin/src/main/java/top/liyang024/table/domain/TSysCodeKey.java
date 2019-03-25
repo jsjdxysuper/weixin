@@ -1,16 +1,18 @@
 package top.liyang024.table.domain;
 
 public class TSysCodeKey {
-    private String cTypeid;
+    private Byte cIndex;
 
     private String cId;
 
-    public String getcTypeid() {
-        return cTypeid;
+    private String cTypeid;
+
+    public Byte getcIndex() {
+        return cIndex;
     }
 
-    public void setcTypeid(String cTypeid) {
-        this.cTypeid = cTypeid == null ? null : cTypeid.trim();
+    public void setcIndex(Byte cIndex) {
+        this.cIndex = cIndex;
     }
 
     public String getcId() {
@@ -19,5 +21,13 @@ public class TSysCodeKey {
 
     public void setcId(String cId) {
         this.cId = cId == null ? null : cId.trim();
+    }
+
+    public String getcTypeid() {
+        return cTypeid;
+    }
+
+    public void setcTypeid(String cTypeid) {
+        this.cTypeid = cTypeid == null ? null : cTypeid.trim();
     }
 }
