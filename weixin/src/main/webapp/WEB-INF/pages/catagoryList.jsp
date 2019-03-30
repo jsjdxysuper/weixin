@@ -11,44 +11,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
         <link href="<%=basePath %>assets/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="<%=basePath %>css/style.css"/>       
         <link href="<%=basePath %>assets/css/codemirror.css" rel="stylesheet">
         <link rel="stylesheet" href="<%=basePath %>assets/css/ace.min.css" />
-        <link rel="stylesheet" href="<%=basePath %>assets/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="<%=basePath %>assets/bootstrap-plugin/bootstrap-combobox.css" />
-		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-        <!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
-			<script src="<%=basePath %>assets/js/jquery.min.js"></script>
+        <link rel="stylesheet" href="<%=basePath %>assets/font/css/font-awesome.min.css" />
+        
 
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-		<!--[if !IE]> -->
-
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='<%=basePath %>assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-
-		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='<%=basePath %>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
+		<script src="<%=basePath %>assets/js/jquery-1.10.2.min.js"></script>
 		<script src="<%=basePath %>assets/js/bootstrap.min.js"></script>
+		<script src="<%=basePath %>assets/js/suggest-plugin/bootstrap-suggest.min.js" type="text/javascript"></script>
 		<script src="<%=basePath %>assets/js/typeahead-bs2.min.js"></script>
 		<!-- page specific plugin scripts -->
 		<script src="<%=basePath %>assets/js/jquery.dataTables.min.js"></script>
@@ -57,7 +30,12 @@
         <script type="text/javascript" src="<%=basePath %>js/H-ui.admin.js"></script> 
         <script src="<%=basePath %>assets/layer/layer.js" type="text/javascript" ></script>
         <script src="<%=basePath %>assets/laydate/laydate.js" type="text/javascript"></script>
-        <script src="<%=basePath %>assets/bootstrap-plugin/bootstrap-combobox.js" type="text/javascript"></script>
+       <style type="text/css">
+.debug > .selected { color: #4cae4c }
+#combo-tog { min-width: 100px }
+#combo-group { height: 2.5em }
+p .btn { width: 35% }
+    </style> 
 <title>用户列表</title>
 </head>
 
@@ -78,6 +56,7 @@
        <span class="l_f">
         <a href="javascript:void()" id="catagory_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
         <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
+        
        </span>
        <span class="r_f">共：<b>2345</b>条</span>
      </div>
@@ -109,19 +88,39 @@
  </div>
 </div>
 <!--添加目录图层-->
-<div class="add_menber" id="add_catagory_style" style="display:none">
+<div class="add_menber" id="add_catagory_style" style="display:none" style="height:800px;">
   <form class="form-inline">
     <ul class=" page-content">
     <li hidden="hidden"><input name="catagory.id"/></li>
 
      <li><label class="label_name">名&nbsp;&nbsp;&nbsp;&nbsp;称：</label><span class="add_name"><input value="" name="catagory.cName" type="text"  class="text_add" /></span><div class="prompt r_f"></div></li>
+     
      <li><label class="label_name">mark1：</label><span class="add_name"><input name="catagory.cMark1" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name" >父节点id：</label>
+		<div class="input-group"  >
+		     <input type="text" class="text_add" id="cParentid11" style="width:97%;" name="catagory.cParentid11">
+		     <div class="input-group-btn">
+		         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		             <span class="caret"></span>
+		         </button>
+		         <ul class="dropdown-menu dropdown-menu-right" role="menu">
+		         </ul>
+		     </div>
+		     <!-- /btn-group -->
+		 </div>
+     </li>
      <li><label class="label_name">mark2：</label><span class="add_name"><input name="catagory.cMark2" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">mark3：</label><span class="add_name"><input name="catagory.cMark3" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">图片：</label><span class="add_name"><select name="catagory.cImage" id="imageCombobox" ><option>dd</option><option>ab</option><option>bb</option></select></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">层级名称：</label><span class="add_name"><input name="catagory.cLayername" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">层级id：</label><span class="add_name"><input name="catagory.cLayerid" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">父节点id：</label><span class="add_name"><select name="catagory.cParentid"><option>dd</option></select></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">层级名称：</label><span class="add_name">
+     		<select name="catagory.cLayerid">
+     			<option value="first">一级目录</option>
+     			<option value="second">二级目录</option>
+     			<option value="second">三级目录</option>
+     		</select>
+     		</span>
+     		<div class="prompt r_f"></div>
+     </li>
      <li><label class="label_name">排序：</label><span class="add_name"><input name="catagory.cIndex" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">类别id：</label><span class="add_name"><input name="catagory.cType" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
     </ul>
@@ -171,9 +170,44 @@ function searchData() {
 	});
 }
 jQuery(function($) {
-	$('.combobox').combobox();
+	$("#cParentid11").bsSuggest('init',{
+		clearable: true,
+        url: "http://localhost:8080/weixin//catagory/Parentlist",
+        idField: "cUid",
+        keyField: "cName",
+        showBtn: true,
+        effectiveFields: ['cLayername','cName'],
+        effectiveFieldsAlias: {'cLayername':'层级','cName':'名字'},
+        showHeader: false,
+        hideOnSelect: true,   
+        autoDropup: true,
+        listStyle: {
+            'padding-top': 0,
+            'max-height': '155px',
+            'max-width': '260px',
+            'overflow': 'auto',
+            'width': 'auto',
+            'transition': '0.3s',
+            '-webkit-transition': '0.3s',
+            '-moz-transition': '0.3s',
+            '-o-transition': '0.3s'
+        }
+	}).on('onDataRequestSuccess', function (e, result) {
+        console.log('onDataRequestSuccess: ', result);
+    }).on('onSetSelectValue', function (e, keyword, data) {
+        console.log('onSetSelectValue: ', keyword, data);
+    }).on('onUnsetSelectValue', function () {
+        console.log('onUnsetSelectValue');
+    }).on('onShowDropdown', function (e, data) {
+        console.log('onShowDropdown', e.target.value, data);
+    }).on('onHideDropdown', function (e, data) {
+        console.log('onHideDropdown', e.target.value, data);
+    });
+
 	$('#searchBtn').bind('click',searchData);
 	searchData();
+	/*用户-添加*/
+	 $('#catagory_add').on('click', dialogDis);
 	
 	
 				var oTable1 = $('#sample-table').dataTable( {
@@ -283,7 +317,6 @@ function member_edit(editBtn){
 	        catagory.cIndex = $("input[name='catagory.cIndex']").val();
 	        catagory.cType = $("input[name='catagory.cType']").val();
 	        catagory.cParentid = $("select[name='catagory.cParentid']").val();
-	        debugger;
 	        
 	        $.ajax({
 	    		type: "POST",
@@ -369,7 +402,6 @@ function dialogPicListCtr(){
 		dataType:"json",
 		data: {},
 		success: function(msg){
-			//debugger;
 			$("#imageCombobox").empty();
 			$("select[name='catagory.cImage']").append("<option value='null'>空</option>");
 			$(msg).each(function(i,data){
@@ -407,9 +439,9 @@ function dialogParentListCtr(){
 
 function dialogDis(){
 	
-	dialogPicListCtr();
-	dialogParentListCtr();
-	dialogEraser();
+// 	dialogPicListCtr();
+	//dialogParentListCtr();
+// 	dialogEraser();
     layer.open({
         type: 1,
         title: '添加类别',
@@ -419,8 +451,7 @@ function dialogDis(){
         content:$('#add_catagory_style'),
 		btn:['添加','取消'],
 		yes:function(dialogIndex,layero){
-			
-	        
+	        debugger;
 	        var catagory = {};
 	        catagory.cName = $("input[name='catagory.cName']").val();
 	        catagory.cMark1 = $("input[name='catagory.cMark1']").val();
@@ -450,57 +481,38 @@ function dialogDis(){
 	    		
 	    		}
 	    	});
-// 		 	var num=0;
-// 		 	var str="";
-// 			$(".add_menber input[type$='text']").each(function(n){
-//           		if($(this).val()=="")
-//           		{
-// 				   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-// 	                	title: '提示框',				
-// 						icon:0,								
-//           			}); 
-// 		    		num++;
-//             		return false;            
-//          		} 
-// 		 	});
-			
-// 		  if(num>0){  return false;}	 	
-//           else{
-// 			  layer.alert('添加成功！',{
-//                	title: '提示框',				
-// 				icon:1,		
-// 			  });
-// 			  layer.close(index);	
-// 		  }		
-		  
-		}
+	        
+		}//yes,function
     });
 }
-/*用户-添加*/
- $('#catagory_add').on('click', dialogDis);
-/*用户-查看*/
-function member_show(title,url,id,w,h){
-	layer_show(title,url+'#?='+id,w,h);
-}
-/*用户-停用*/
-function member_stop(obj,id){
-	layer.confirm('确认要停用吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-		$(obj).remove();
-		layer.msg('已停用!',{icon: 5,time:1000});
-	});
-}
+	        
 
-/*用户-启用*/
-function member_start(obj,id){
-	layer.confirm('确认要启用吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-		$(obj).remove();
-		layer.msg('已启用!',{icon: 6,time:1000});
-	});
-}
+	        
+
+
+/*用户-查看*/
+// function member_show(title,url,id,w,h){
+// 	layer_show(title,url+'#?='+id,w,h);
+// }
+/*用户-停用*/
+// function member_stop(obj,id){
+// 	layer.confirm('确认要停用吗？',function(index){
+// 		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
+// 		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+// 		$(obj).remove();
+// 		layer.msg('已停用!',{icon: 5,time:1000});
+// 	});
+// }
+
+// /*用户-启用*/
+// function member_start(obj,id){
+// 	layer.confirm('确认要启用吗？',function(index){
+// 		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
+// 		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+// 		$(obj).remove();
+// 		layer.msg('已启用!',{icon: 6,time:1000});
+// 	});
+// }
 
 /*用户-删除*/
 function member_del(obj,id){

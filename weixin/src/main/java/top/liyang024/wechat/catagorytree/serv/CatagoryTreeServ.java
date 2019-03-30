@@ -1,5 +1,6 @@
 package top.liyang024.wechat.catagorytree.serv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,15 @@ public class CatagoryTreeServ {
 	@Autowired
 	private TCatagorytreeMapper catagorytreeMapper;
 	
+	public List<TCatagorytree>catagoryParentList(){
+		TCatagorytreeExample example = new TCatagorytreeExample();
+		List<String> values = new ArrayList<String>();
+		values.add("first");
+		values.add("second");
+		example.createCriteria().andCLayeridIn(values);
+		List<TCatagorytree> catagoryList = catagorytreeMapper.selectByExample(example);
+		return catagoryList;
+	}
 	public List<TCatagorytree>allCatagory(){
 		TCatagorytreeExample example = new TCatagorytreeExample();
 		example.createCriteria();

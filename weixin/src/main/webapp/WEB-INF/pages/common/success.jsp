@@ -45,7 +45,7 @@
 <!-- <h3><a href="javascript:history.back(-1)"><&lt:返回上一页</a></h3> -->
 <h1>操作成功</h1>
 <br/>
-<h3><a href="javascript:window.location='<%=ref%>'"><&lt:返回上一页</a></h3>
+<h3><a href="javascript:window.location='<%=ref%>'"><&lt:返回上一页，继续上传</a></h3>
 <br />
 <h2>${retMsg.msg }</h2>
 </body>

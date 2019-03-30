@@ -36,10 +36,22 @@ public class CatagoryTreeController {
 	@RequestMapping(value="/catagory/list",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
 	public String catagoryTreeListTable() {
 		List<TCatagorytree> allCatagoryList = catagoryTreeServ.allCatagory();
-		
+
 		return JSONArray.fromObject(allCatagoryList).toString();
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value="/catagory/Parentlist",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
+	public String catagoryTreeParentList() {
+		List<TCatagorytree> allCatagoryList = catagoryTreeServ.catagoryParentList();
+		JSONObject jo = new JSONObject();
+		jo.accumulate("message", "");
+		jo.accumulate("value", allCatagoryList);
+		jo.accumulate("code", "200");
+		jo.accumulate("redirect", "");
+		return jo.toString();
+	}
 	@ResponseBody
 	@RequestMapping(value="/catagory/picFileList",produces={"text/html;charset=UTF-8;","application/json;charset=UTF-8;"})
 	public String getPicFiles(){

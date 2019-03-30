@@ -19,11 +19,13 @@
 <link href="<%=basePath %>assets/css/codemirror.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=basePath %>assets/css/ace.min.css" />
 <link rel="stylesheet" href="<%=basePath %>font/css/font-awesome.min.css" />
+
 <!--[if lte IE 8]>
   <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 <![endif]-->
 <script src="<%=basePath %>js/jquery-1.9.1.min.js"></script>
 <script src="<%=basePath %>assets/js/bootstrap.min.js"></script>
+<script src="<%=basePath %>assets/js/suggest-plugin/bootstrap-suggest.min.js" type="text/javascript"></script>
 <script src="<%=basePath %>assets/js/typeahead-bs2.min.js"></script>           	
         <script src="<%=basePath %>assets/layer/layer.js" type="text/javascript" ></script>          
         <script src="<%=basePath %>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -31,9 +33,7 @@
         <script src="<%=basePath %>assets/js/ace-elements.min.js"></script>
 		<script src="<%=basePath %>assets/js/ace.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		
-	});
+
 	function addUploadFile(){
 		var trContent = $($("#uploadFileTable tbody tr")[0]).html();
 		$("#uploadFileTable tbody").append("<tr>"+trContent+"</tr>");
@@ -55,7 +55,8 @@
 <body>
 <div >
 <h1>文件批量上传</h1>
-<div><input class="btn  btn-default"  onclick="addUploadFile()" value="添加上传文件"/></div>
+<div><input class="btn  btn-default"  onclick="addUploadFile()" value="添加上传文件"/>
+
 <!-- <form id="uploadFileForm" name="uploadFileForm"  -->
 <%-- 	action="<%=basePath %>uploadFile/oneFile" method="post"  enctype="multipart/form-data"> --%>
 <!-- <input type="file" name="file"> -->
@@ -80,9 +81,8 @@
 					<td><input id="upFile1" class="file-label" type="file" name="file"></td>
 					<td>
 						<select name="fileType">
-							<c:forEach items="${fileTypeList }" var="data">
-								<option value="${data.cKey }">${data.cValue}</option>
-							</c:forEach>
+							<option value="img">图片</option>
+							<option value="video">视频</option>
 						</select>
 					</td>
 					<td><input type="text" size="120" name="mark" id="mark"/></td>
@@ -93,5 +93,10 @@
 		<input type="submit" class="btn btn-primary" value="上传所有文件"/>
 	</form>
 </div>
+<script type="text/javascript">
+$(function(){
+
+});
+</script>
 </body>
 </html>
