@@ -10,6 +10,19 @@
     <result column="c_val" jdbcType="VARCHAR" property="cVal" />
     <result column="c_mark" jdbcType="VARCHAR" property="cMark" />
   </resultMap>
+    <resultMap id="TCatagorytreeMap" type="top.liyang024.table.domain.TCatagorytree">
+    <id column="c_uid" jdbcType="VARCHAR" property="cUid" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="c_mark1" jdbcType="VARCHAR" property="cMark1" />
+    <result column="c_mark2" jdbcType="VARCHAR" property="cMark2" />
+    <result column="c_mark3" jdbcType="VARCHAR" property="cMark3" />
+    <result column="c_image" jdbcType="VARCHAR" property="cImage" />
+    <result column="c_layername" jdbcType="VARCHAR" property="cLayername" />
+    <result column="c_layerid" jdbcType="VARCHAR" property="cLayerid" />
+    <result column="c_parentid" jdbcType="VARCHAR" property="cParentid" />
+    <result column="c_index" jdbcType="TINYINT" property="cIndex" />
+    <result column="c_type" jdbcType="VARCHAR" property="cType" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -71,6 +84,10 @@
   <sql id="Base_Column_List">
     c_index, c_id, c_typeid, c_typename, c_name, c_val, c_mark
   </sql>
+  <select id="selectRealVideoList" resultMap="TCatagorytreeMap">
+  	select a.* from t_catagorytree a,t_sys_code b
+		where a.c_uid=b.c_val and b.c_typeid=#{cTypeid} and b.c_id=#{cId} order by b.c_index
+  </select>
   <select id="selectByExample" parameterType="top.liyang024.table.domain.TSysCodeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

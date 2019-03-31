@@ -2,6 +2,8 @@ package top.liyang024.table.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import top.liyang024.table.domain.TCatagorytree;
 import top.liyang024.table.domain.TSysCode;
 import top.liyang024.table.domain.TSysCodeExample;
 import top.liyang024.table.domain.TSysCodeKey;
@@ -28,4 +30,5 @@ public interface TSysCodeMapper {
     int updateByPrimaryKeySelective(TSysCode record);
 
     int updateByPrimaryKey(TSysCode record);
+    List<TCatagorytree> selectRealVideoList(@Param("cTypeid")String cTypeid,@Param("cId")String cId);
 }
